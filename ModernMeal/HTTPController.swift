@@ -171,8 +171,8 @@ class HTTPController
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.HTTPMethod = "PUT"
             
-            let updateData = ["grocery_list_item":groceryListItem.getDictionary()]
-//            let updateData = ["grocery_list_item":["shopped": groceryListItem.shopped]]
+//            let updateData = ["grocery_list_item":groceryListItem.getDictionary()]
+            let updateData = ["grocery_list_item":["shopped": groceryListItem.shopped]]
             
             do
             {
@@ -219,7 +219,7 @@ class HTTPController
     }
     
     //MARK: - Delete item in grocery list at server
-    func delete(groceryListItem:Item) -> Bool
+    func delete(groceryListItem:Item,viewController:UIViewController) -> Bool
     {
         var result = false
         
@@ -258,9 +258,14 @@ class HTTPController
                     else
                     {
                         print("item error deleting, error: \(error?.localizedDescription)")
+                        //IN HERE IS NECESSARY ADD THIS ITEM AT THE HISTORY OF NOT CONNECTION ITEMS at httpController
+
+                        let popUpAlertController = UIAlertController(title: "Error deleting \(groceryListItem.item_name)!" , message: "This item was deleted at \(groceryListItem.category)  but can not be created in the ModernMeal server because there is a problem with the Internet connection. The grocery list will be updated once the Internet connection is restored", preferredStyle: UIAlertControllerStyle.Alert)
+                        popUpAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+                        viewController.presentViewController(popUpAlertController, animated: true, completion: nil)
                         
                     }
-                   
+                 
                     
             }
             deleteTask.resume()

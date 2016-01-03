@@ -266,6 +266,7 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
+    //MARK: Select cell item
      func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         if let anItem:Item = groceryListItemsDictionary[category_order[indexPath.section]]![indexPath.row]
@@ -291,10 +292,13 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
                 undoShoppedHistory.addObject(indexPath)
             }
             
+            httpController.update(anItem, viewController: self)
             
             currentCellIndexPath = indexPath
             
             self.tabBarController?.navigationItem.rightBarButtonItems?.last?.enabled = true
+            
+            
 
             //tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
@@ -324,8 +328,9 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
                 
                 //if item was deleted in the server, delete it in the app
                
-                    if httpController.delete(anItem)
-                    {
+                    if httpController.delete(anItem, viewController: self)
+                    {}
+                    else{}
                         
                         self.undoShoppedHistory.removeObject(indexPath)
                         self.tabBarController?.navigationItem.rightBarButtonItems?.last?.enabled = false
@@ -334,22 +339,8 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
                         self.groceryListItemsDictionary[self.category_order[indexPath.section]]?.removeAtIndex(indexPath.row)
                         //delete table cell
                         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-                    }
-                    else
-                    {
-                        //IN HERE IS NECESSARY ADD THIS ITEM AT THE HISTORY OF NOT CONNECTION ITEMS at httpController
-                        self.undoShoppedHistory.removeObject(indexPath)
-                        self.tabBarController?.navigationItem.rightBarButtonItems?.last?.enabled = false
-                        
-                        //if the element exist, erase it
-                        self.groceryListItemsDictionary[self.category_order[indexPath.section]]?.removeAtIndex(indexPath.row)
-                        //delete table cell
-                        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-                        
-                        let popUpAlertController = UIAlertController(title: "Error deleting \(anItem.item_name)!" , message: "This item was deleted at \(anItem.category)  but can not be created in the ModernMeal server because there is a problem with the Internet connection. The grocery list will be updated once the Internet connection is restored", preferredStyle: UIAlertControllerStyle.Alert)
-                        popUpAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
-                        self.presentViewController(popUpAlertController, animated: true, completion: nil)
-                    }
+                    
+                
                 
             }
             
