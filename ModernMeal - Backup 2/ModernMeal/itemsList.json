@@ -1,0 +1,38 @@
+{
+    
+        "grocery_list_id": 374,
+        "chef_id": 583,
+
+    "grocery_list_items": [
+                           {
+                           "id": 14690,
+                           "grocery_list_id": 374,
+                           "category": "Seafood",
+                           "text": "4 pound shrimp medium shelled and deveined, shells reserved",
+                           "recipe_id": 17889,
+                           "recipe_name": "Creamy Shrimp Casserole with Buttery Crumbs",
+                           "shopped": false,
+                           "item_name": "shrimp"
+                           },
+                           {
+                           "id": 14691,
+                           "grocery_list_id": 374,
+                           "category": "Dairy Products & Eggs",
+                           "text": "6 cup heavy cream",
+                           "recipe_id": 17889,
+                           "recipe_name": "Creamy Shrimp Casserole with Buttery Crumbs",
+                           "shopped": false,
+                           "item_name": "heavy cream"
+                           },
+                           {
+                           "id": 14692,
+                           "grocery_list_id": 374,
+                           "category": "Beer, Wine & Spirits",
+                           "text": "1/2 cup dry sherry",
+                           "recipe_id": 17889,
+                           "recipe_name": "Creamy Shrimp Casserole with Buttery Crumbs",
+                           "shopped": false,
+                           "item_name": "dry sherry"
+                           }
+                           ]
+}

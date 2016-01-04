@@ -5,11 +5,11 @@
         <attribute name="notesString" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName=".User" syncable="YES">
-        <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="token" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="GroceryList" positionX="-63" positionY="-18" width="128" height="75"/>
-        <element name="User" positionX="-63" positionY="0" width="128" height="75"/>
+        <element name="GroceryList" positionX="108" positionY="-3" width="146" height="75"/>
+        <element name="User" positionX="-153" positionY="-9" width="117" height="73"/>
     </elements>
 </model>

@@ -1,0 +1,263 @@
+{
+    "grocery_list": {
+        "id": 374,
+        "chef_id": 583,
+        "recipe_ids": [
+                       17889
+                       ],
+        "grocery_list_item_ids": [
+                                  14690,
+                                  14691,
+                                  14692,
+                                  14693,
+                                  14694,
+                                  14696,
+                                  14698,
+                                  14699,
+                                  15781,
+                                  15776,
+                                  15775,
+                                  15777,
+                                  15782,
+                                  15779,
+                                  15783,
+                                  15780,
+                                  15838,
+                                  15839,
+                                  15840,
+                                  15837,
+                                  15841,
+                                  15842
+                                  ],
+        "name": "11/1 - Pedro Trujillo11",
+        "address": "1234 Fake Street 32145",
+        "exclusions": "Nothing, Nothing, Nothing, Nothing",
+        "is_processing": false,
+        "shopped": false,
+        "category_order": "Baby Care,Baking goods,Beans, Grains & Rice,Beer, Wine & Spirits,Beverages,Bread & Bakery,Canned Goods & Soups,Cereal & Dry Packaged Goods,Condiments & Sauces,Dairy Products & Eggs,Dried Fruits,Frozen Foods,Fruits & Vegetables,Herbs & Spices,Household Products,International Foods,Jam, Jellies & Preserves,Juices,Meat & Deli,Nuts,Oils & Dressings,Other & Uncategorized,Pasta & Noodles,Pet Care,Pharmacy & Personal Hygiene,Seafood,Snack Foods,Sweets,Tea & Coffee",
+        "created_at": "2015-11-16T14:29:05Z",
+        "updated_at": "2015-12-23T06:04:46Z"
+    },
+    "grocery_list_items": [
+                           {
+                           "id": 14690,
+                           "grocery_list_id": 374,
+                           "category": "Seafood",
+                           "text": "4 pound shrimp medium shelled and deveined, shells reserved",
+                           "recipe_id": 17889,
+                           "recipe_name": "Creamy Shrimp Casserole with Buttery Crumbs",
+                           "shopped": false,
+                           "item_name": "shrimp"
+                           },
+                           {
+                           "id": 14691,
+                           "grocery_list_id": 374,
+                           "category": "Dairy Products & Eggs",
+                           "text": "6 cup heavy cream",
+                           "recipe_id": 17889,
+                           "recipe_name": "Creamy Shrimp Casserole with Buttery Crumbs",
+                           "shopped": false,
+                           "item_name": "heavy cream"
+                           },
+                           {
+                           "id": 14692,
+                           "grocery_list_id": 374,
+                           "category": "Beer, Wine & Spirits",
+                           "text": "1/2 cup dry sherry",
+                           "recipe_id": 17889,
+                           "recipe_name": "Creamy Shrimp Casserole with Buttery Crumbs",
+                           "shopped": false,
+                           "item_name": "dry sherry"
+                           },
+                           {
+                           "id": 14693,
+                           "grocery_list_id": 374,
+                           "category": "Herbs & Spices",
+                           "text": "salt",
+                           "recipe_id": 17889,
+                           "recipe_name": "Creamy Shrimp Casserole with Buttery Crumbs",
+                           "shopped": false,
+                           "item_name": "salt"
+                           },
+                           {
+                           "id": 14694,
+                           "grocery_list_id": 374,
+                           "category": "Dairy Products & Eggs",
+                           "text": "10 tablespoon unsalted butter 4 tablespoons melted",
+                           "recipe_id": 17889,
+                           "recipe_name": "Creamy Shrimp Casserole with Buttery Crumbs",
+                           "shopped": false,
+                           "item_name": "unsalted butter"
+                           },
+                           {
+                           "id": 14696,
+                           "grocery_list_id": 374,
+                           "category": "Fruits & Vegetables",
+                           "text": "4 teaspoon fresh lemon juice",
+                           "recipe_id": 17889,
+                           "recipe_name": "Creamy Shrimp Casserole with Buttery Crumbs",
+                           "shopped": false,
+                           "item_name": "fresh lemon juice"
+                           },
+                           {
+                           "id": 14698,
+                           "grocery_list_id": 374,
+                           "category": "Herbs & Spices",
+                           "text": "freshly ground pepper",
+                           "recipe_id": 17889,
+                           "recipe_name": "Creamy Shrimp Casserole with Buttery Crumbs",
+                           "shopped": false,
+                           "item_name": "freshly ground pepper"
+                           },
+                           {
+                           "id": 14699,
+                           "grocery_list_id": 374,
+                           "category": "Condiments & Sauces",
+                           "text": "Hot sauce",
+                           "recipe_id": 17889,
+                           "recipe_name": "Creamy Shrimp Casserole with Buttery Crumbs",
+                           "shopped": true,
+                           "item_name": "hot sauce"
+                           },
+                           {
+                           "id": 15781,
+                           "grocery_list_id": 374,
+                           "category": "Other & Uncategorized",
+                           "text": "catfood",
+                           "recipe_id": "",
+                           "recipe_name": "Manually Entered",
+                           "shopped": false,
+                           "item_name": "catfood"
+                           },
+                           {
+                           "id": 15776,
+                           "grocery_list_id": 374,
+                           "category": "Other & Uncategorized",
+                           "text": "test",
+                           "recipe_id": "",
+                           "recipe_name": "Manually Entered",
+                           "shopped": false,
+                           "item_name": "test"
+                           },
+                           {
+                           "id": 15775,
+                           "grocery_list_id": 374,
+                           "category": "Meat & Deli",
+                           "text": "lengua de res",
+                           "recipe_id": "",
+                           "recipe_name": "Manually Entered",
+                           "shopped": true,
+                           "item_name": "lengua de res"
+                           },
+                           {
+                           "id": 15777,
+                           "grocery_list_id": 374,
+                           "category": "Seafood",
+                           "text": "crapola",
+                           "recipe_id": "",
+                           "recipe_name": "Manually Entered",
+                           "shopped": false,
+                           "item_name": "crapola"
+                           },
+                           {
+                           "id": 15782,
+                           "grocery_list_id": 374,
+                           "category": "Other & Uncategorized",
+                           "text": "dogfood",
+                           "recipe_id": "",
+                           "recipe_name": "Manually Entered",
+                           "shopped": false,
+                           "item_name": "dogfood"
+                           },
+                           {
+                           "id": 15779,
+                           "grocery_list_id": 374,
+                           "category": "Other & Uncategorized",
+                           "text": "testttttttt",
+                           "recipe_id": "",
+                           "recipe_name": "Manually Entered",
+                           "shopped": false,
+                           "item_name": "testttttttt"
+                           },
+                           {
+                           "id": 15783,
+                           "grocery_list_id": 374,
+                           "category": "Meat & Deli",
+                           "text": "chunchullo",
+                           "recipe_id": "",
+                           "recipe_name": "Manually Entered",
+                           "shopped": false,
+                           "item_name": "chunchullo"
+                           },
+                           {
+                           "id": 15780,
+                           "grocery_list_id": 374,
+                           "category": "Condiments & Sauces",
+                           "text": "assssafasdfasdfasdf",
+                           "recipe_id": "",
+                           "recipe_name": "Manually Entered",
+                           "shopped": true,
+                           "item_name": "assssafasdfasdfasdf"
+                           },
+                           {
+                           "id": 15838,
+                           "grocery_list_id": 374,
+                           "category": "Condiments & Sauces",
+                           "text": "1 teaspoon Worcestershire sauce",
+                           "recipe_id": 17889,
+                           "recipe_name": "Creamy Shrimp Casserole with Buttery Crumbs",
+                           "shopped": false,
+                           "item_name": "worcestershire sauce"
+                           },
+                           {
+                           "id": 15839,
+                           "grocery_list_id": 374,
+                           "category": "Condiments & Sauces",
+                           "text": "Hot sauce",
+                           "recipe_id": 17889,
+                           "recipe_name": "Creamy Shrimp Casserole with Buttery Crumbs",
+                           "shopped": false,
+                           "item_name": "hot sauce"
+                           },
+                           {
+                           "id": 15840,
+                           "grocery_list_id": 374,
+                           "category": "Oils & Dressings",
+                           "text": "4 cups oyster crackers",
+                           "recipe_id": 17889,
+                           "recipe_name": "Creamy Shrimp Casserole with Buttery Crumbs",
+                           "shopped": false,
+                           "item_name": "oyster crackers"
+                           },
+                           {
+                           "id": 15837,
+                           "grocery_list_id": 374,
+                           "category": "Household Products",
+                           "text": "6  scallions medium white and tender green parts, minced",
+                           "recipe_id": 17889,
+                           "recipe_name": "Creamy Shrimp Casserole with Buttery Crumbs",
+                           "shopped": false,
+                           "item_name": "scallions"
+                           },
+                           {
+                           "id": 15841,
+                           "grocery_list_id": 374,
+                           "category": "Herbs & Spices",
+                           "text": "1/4 teaspoon sweet paprika",
+                           "recipe_id": 17889,
+                           "recipe_name": "Creamy Shrimp Casserole with Buttery Crumbs",
+                           "shopped": false,
+                           "item_name": "sweet paprika"
+                           },
+                           {
+                           "id": 15842,
+                           "grocery_list_id": 374,
+                           "category": "Oils & Dressings",
+                           "text": "2  oyster crackers",
+                           "recipe_id": 17889,
+                           "recipe_name": "Creamy Shrimp Casserole with Buttery Crumbs",
+                           "shopped": false,
+                           "item_name": "oyster crackers"
+                           }
+                           ]
+}
