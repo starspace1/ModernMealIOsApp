@@ -23,8 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // ...
         
-        self.window!.tintColor = UIColor(red: 0.5294, green: 0.8078, blue: 0.0784, alpha: 1.0)//UIColor.greenColor()
-        
+//        self.window!.tintColor = UIColor(red: 78/255, green: 111/255, blue: 34/255, alpha: 1.0)//modernmeal dark
+        self.window!.tintColor = UIColor(red: 126/255, green: 177/255, blue: 56/255, alpha: 1.0)//modernmeal color
+
         return true
     }
 
