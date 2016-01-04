@@ -197,6 +197,7 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
                     signInButton.enabled = false
                     
                     httpController.token = token
+                    httpController.signedIn = true
                     
 //                    UIApplication.sharedApplication().networkActivityIndicatorVisible = true
                     api.getListOfGroceryListsFromAPIModernMeal(token)

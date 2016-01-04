@@ -218,21 +218,21 @@ class HTTPController
                         tit = "\(groceryListItem.item_name!) was updated!"
                         msj = "This item was updated at \(groceryListItem.category) in your grocery list."
                         
-//                        do
-//                        {
-//                            let postData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
-//                            if let postDataDict:NSDictionary = (postData as! NSDictionary)
-//                            {
-//                                
-//                                print("--- posData:")
-//                                print(postData)
-//                            }
-//                        }
-//                        catch let error as NSError
-//                        {
-//                            print("data couln't be parsed in sign in update task: \(error)")
-//                        }
-//                        
+                        do
+                        {
+                            let postData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+                            if let postDataDict:NSDictionary = (postData as! NSDictionary)
+                            {
+                                
+                                print("--- posData:")
+                                print(postData)
+                            }
+                        }
+                        catch let error as NSError
+                        {
+                            print("data couln't be parsed in sign in update task: \(error)")
+                        }
+                        
                     }
                     else
                     {
