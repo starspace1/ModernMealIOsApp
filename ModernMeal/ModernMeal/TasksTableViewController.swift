@@ -235,6 +235,35 @@ class TasksTableViewController: UITableViewController,  ItemsListControllerProto
         return true
     }
     */
+    
+    //===================================================================================================================
+    
+    //MARK: - Section titles and Style
+    
+    //===================================================================================================================
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    {
+        
+        
+        return "Upcoming Grocery Lists"
+    }
+    
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) //reference [1]
+    {
+        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView //recast your view as a UITableViewHeaderFooterView
+        
+        //Style 1
+//      header.contentView.backgroundColor = ModernMealGreenColor //make the background color light blue
+//      header.textLabel!.textColor = UIColor.whiteColor() //make the text white
+        
+        //Style 2
+        header.contentView.backgroundColor = UIColor.whiteColor() //make the background color light blue
+        header.textLabel!.textColor = ModernMealGreenColor//make the text white
+        header.textLabel!.textAlignment = .Center
+        
+        // header.alpha = 0.5 //make the header transparent
+    }
 
     //===================================================================================================================
     // MARK: - Navigation

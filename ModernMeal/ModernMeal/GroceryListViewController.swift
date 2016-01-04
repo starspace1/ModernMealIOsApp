@@ -353,24 +353,6 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.reloadData()
     }
     
-    
-    //===================================================================================================================
-
-    //MARK: - Section titles
-    
-    //===================================================================================================================
-    
-     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
-    {
-        if groceryListItemsDictionary[category_order[section]]?.isEmpty == false
-        {
-            return category_order[section]
-        }
-    
-        return ""
-    }
-    
-    
     /*
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
@@ -384,6 +366,40 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
     return true
     }
     */
+    
+    //===================================================================================================================
+
+    //MARK: - Section titles and Style
+    
+    //===================================================================================================================
+    
+     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    {
+        if groceryListItemsDictionary[category_order[section]]?.isEmpty == false
+        {
+            return category_order[section]
+        }
+    
+        return ""
+    }
+    
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) //reference [1]
+    {
+        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView //recast your view as a UITableViewHeaderFooterView
+        
+        //Style 1
+        //        header.contentView.backgroundColor = ModernMealGreenColor //make the background color light blue
+        //        header.textLabel!.textColor = UIColor.whiteColor() //make the text white
+        
+        //Style 2
+        //        header.contentView.backgroundColor = ModernMealGreenColor //make the background color light blue
+        header.textLabel!.textColor = ModernMealGreenColor//make the text white
+        header.textLabel!.textAlignment = .Center
+        
+        // header.alpha = 0.5 //make the header transparent
+    }
+    
+   
     
    
     //===================================================================================================================
@@ -513,3 +529,4 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
     
 
 }
+//reference[1]:http://www.elicere.com/mobile/swift-blog-2-uitableview-section-header-color/
