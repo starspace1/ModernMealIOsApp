@@ -93,7 +93,7 @@ class HTTPController
     }
     
     //MARK: - Create item in grocery list at server
-    func create(groceryListItem:Item,viewController:UIViewController) -> Bool
+    func create(var groceryListItem:Item,viewController:UIViewController) -> Bool
     {
         var result = false
         
@@ -103,7 +103,7 @@ class HTTPController
         if signedIn
         {
             
-            let fullURL = "\(baseUrl)/api/v1/grocery_list_items/?auth_token="+token
+            let fullURL = "\(baseUrl)/api/v1/grocery_list_items.json/?auth_token="+token
             let request = NSMutableURLRequest(URL: NSURL(string: fullURL)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60.0)
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -130,9 +130,33 @@ class HTTPController
                     {
                         print("item was created, response: \(response)")
                         result =  true
-                        tit = "\(groceryListItem.item_name!) was created!"
-                        msj = "This item was added to \(groceryListItem.category) in your grocery list."
                         
+                        
+                        do
+                        {
+                            let postData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+                            if let postDataDict:NSDictionary = (postData as! NSDictionary)
+                            {
+                                
+                                print("--- posData:")
+                                print(postData)
+                                
+                                tit = "\(groceryListItem.item_name!) was created!"
+                                msj = "This item was added to \(groceryListItem.category) in your grocery list."
+                                
+                                let aVC = viewController as! AddItemViewController
+                                
+                                let item:Item = Item(ItemDict: postDataDict["grocery_list_item"] as! NSDictionary)
+                                groceryListItem = item
+                                
+                                aVC.createItem(item)
+                                
+                            }
+                        }
+                        catch let error as NSError
+                        {
+                            print("data couln't be parsed in sign in create task: \(error)")
+                        }
                         
                     }
                     else
@@ -171,8 +195,8 @@ class HTTPController
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.HTTPMethod = "PUT"
             
-//            let updateData = ["grocery_list_item":groceryListItem.getDictionary()]
-            let updateData = ["grocery_list_item":["shopped": groceryListItem.shopped]]
+            let updateData = ["grocery_list_item":groceryListItem.getDictionary()]
+//            let updateData = ["grocery_list_item":["shopped": groceryListItem.shopped]]
             
             do
             {
@@ -196,6 +220,20 @@ class HTTPController
                         tit = "\(groceryListItem.item_name!) was updated!"
                         msj = "This item was updated at \(groceryListItem.category) in your grocery list."
                         
+                        do
+                        {
+                            let postData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+                            if let postDataDict:NSDictionary = (postData as! NSDictionary)
+                            {
+                                
+                                print("--- posData:")
+                                print(postData)
+                            }
+                        }
+                        catch let error as NSError
+                        {
+                            print("data couln't be parsed in sign in update task: \(error)")
+                        }
                         
                     }
                     else
@@ -251,8 +289,23 @@ class HTTPController
                     if error == nil
                     {
                         
-                                print("item was deleted, response: \(response)")
-                                result =  true
+                        print("item was deleted, response: \(response)")
+                        result =  true
+                        
+                        do
+                        {
+                            let postData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+                            if let postDataDict:NSDictionary = (postData as! NSDictionary)
+                            {
+                                
+                                print("--- posData:")
+                                print(postData)
+                            }
+                        }
+                        catch let error as NSError
+                        {
+                            print("data couln't be parsed in sign in delete task: \(error)")
+                        }
                         
                     }
                     else

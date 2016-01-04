@@ -10,6 +10,8 @@ import UIKit
 
 class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate
 {
+    @IBOutlet weak var item_nameTextLabel: UILabel!
+    @IBOutlet weak var recipe_nameTextLabel: UILabel!
     
     @IBOutlet weak var item_nameTextField: UITextField!
     @IBOutlet weak var recipe_nameTextField: UITextField!
@@ -37,6 +39,13 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         self.navigationItem.rightBarButtonItem = saveItemButton//self.editButtonItem()]
         self.navigationItem.rightBarButtonItem?.enabled = false
         
+        recipe_nameTextField.enabled = false
+        recipe_nameTextField.alpha = 0.5
+        recipe_nameTextLabel.alpha = 0.5
+        item_nameTextField.enabled = false
+        item_nameTextField.alpha = 0.5
+        item_nameTextLabel.alpha = 0.5
+
         
         //check if is an update or is adding a new item
         if newItem != nil
@@ -54,11 +63,17 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         else
         {
             title = "Add Item"
+            
             item_nameTextField.text = ""
-            recipe_nameTextField.text = ""
+            item_nameTextField.alpha = 0.0
+            item_nameTextLabel.alpha = 0.0
+
+            recipe_nameTextField.text = "Manually Entered"
             textTextField.text = ""
             let index = category_order.indexOf("Other & Uncategorized")
             categoryPicker.selectRow(index!, inComponent: 0, animated: true)
+            categoryPicker.userInteractionEnabled = false
+            categoryPicker.alpha = 0.5
         }
         
         // Do any additional setup after loading the view.
@@ -82,7 +97,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
     
     @IBAction func item_nameActionEditingDidEnd(sender: UITextField)
     {
-        if item_nameTextField.text != "" && textTextField.text != ""
+        if textTextField.text != ""//item_nameTextField.text != "" && textTextField.text != ""
         {
            
             self.navigationItem.rightBarButtonItem?.enabled = true
@@ -95,7 +110,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
     }
     @IBAction func item_nameActionEditiongChanged(sender: UITextField)
     {
-        if item_nameTextField.text != "" && textTextField.text != ""
+        if textTextField.text != ""//item_nameTextField.text != "" && textTextField.text != ""
         {
             
             self.navigationItem.rightBarButtonItem?.enabled = true
@@ -143,7 +158,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
     
     func saveItemButtonAction(sender:UIBarButtonItem)
     {
-        if item_nameTextField.text != ""// || item_nameTextField.text != nil
+        if textTextField.text != ""// || item_nameTextField.text != nil
         {
             var isNew = false
             
@@ -228,12 +243,24 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
             }
         
 
-            delegator.itemWasCreated(newItem,isNew: isNew)
+            //delegator.itemWasCreated(newItem,isNew: isNew)
             
             
             
         }
 
+    }
+    
+    func updateItem(item:Item)
+    {
+        print("ID: \(item.id)")
+        delegator.itemWasCreated(item,isNew: false)
+    }
+    
+    func createItem(item:Item)
+    {
+        print("ID: \(item.id)")
+        delegator.itemWasCreated(item,isNew: true)
     }
     
     /*
