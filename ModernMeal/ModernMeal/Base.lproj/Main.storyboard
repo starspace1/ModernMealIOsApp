@@ -18,42 +18,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type here your username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U0h-gn-d28">
-                                <rect key="frame" x="30" y="94" width="540" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type here your username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U0h-gn-d28">
+                                <rect key="frame" x="30" y="173" width="540" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="wQC-8d-oJv"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type here your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Di3-iN-dVF">
-                                <rect key="frame" x="30" y="154" width="540" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type here your password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Di3-iN-dVF">
+                                <rect key="frame" x="30" y="223" width="540" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="f6I-pg-0us"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bce-c4-l3S">
-                                <rect key="frame" x="274" y="224" width="52" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bce-c4-l3S">
+                                <rect key="frame" x="274" y="283" width="52" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Sign in"/>
                                 <connections>
                                     <action selector="signInTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fdg-Jt-Fd0"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-hor" translatesAutoresizingMaskIntoConstraints="NO" id="D31-dd-abE">
+                                <rect key="frame" x="30" y="70" width="540" height="73"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="U0h-gn-d28" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="5eM-4v-Nss"/>
                             <constraint firstItem="U0h-gn-d28" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.9" id="AC7-uT-PDr"/>
+                            <constraint firstItem="D31-dd-abE" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.9" id="CnR-pj-ybY"/>
                             <constraint firstItem="U0h-gn-d28" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EhS-Q0-eV6"/>
-                            <constraint firstItem="bce-c4-l3S" firstAttribute="top" secondItem="Di3-iN-dVF" secondAttribute="bottom" constant="40" id="iT3-8f-AOi"/>
+                            <constraint firstItem="D31-dd-abE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RAL-bI-Vu9"/>
+                            <constraint firstItem="U0h-gn-d28" firstAttribute="top" secondItem="D31-dd-abE" secondAttribute="bottom" constant="30" id="STK-bQ-2CO"/>
+                            <constraint firstItem="D31-dd-abE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="gRF-yQ-wZb"/>
+                            <constraint firstItem="bce-c4-l3S" firstAttribute="top" secondItem="Di3-iN-dVF" secondAttribute="bottom" constant="30" id="iT3-8f-AOi"/>
                             <constraint firstItem="bce-c4-l3S" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pUq-XA-IkP"/>
                             <constraint firstItem="Di3-iN-dVF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pXg-cb-Dhd"/>
                             <constraint firstItem="Di3-iN-dVF" firstAttribute="width" secondItem="U0h-gn-d28" secondAttribute="width" id="qjo-D6-mLv"/>
-                            <constraint firstItem="Di3-iN-dVF" firstAttribute="top" secondItem="U0h-gn-d28" secondAttribute="bottom" constant="30" id="rOI-Mo-5yj"/>
+                            <constraint firstItem="Di3-iN-dVF" firstAttribute="top" secondItem="U0h-gn-d28" secondAttribute="bottom" constant="20" id="rOI-Mo-5yj"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="5eM-4v-Nss"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="D1a-f4-2Ge"/>
                     <connections>
@@ -610,6 +622,7 @@
     <resources>
         <image name="bookmark" width="23" height="23"/>
         <image name="list" width="23" height="23"/>
+        <image name="logo-hor" width="300" height="73"/>
         <image name="user" width="25" height="25"/>
     </resources>
 </document>

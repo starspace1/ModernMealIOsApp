@@ -43,7 +43,13 @@ class TasksTableViewController: UITableViewController,  ItemsListControllerProto
     {
         super.viewDidLoad()
         
-        title = "ModernMeal"
+        //title = "ModernMeal"
+        let logo = UIImage(named: "logo-hor.png")
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 38))
+        imageView.image = logo
+        imageView.contentMode = .ScaleAspectFit
+        self.navigationItem.titleView = imageView
+        
         //api = APIController(delegate: self)        //create instance of API controller with self
 
         //tableView.registerClass(TaskTableViewCell.self, forCellReuseIdentifier: "TaskTableViewCell") //register cell
