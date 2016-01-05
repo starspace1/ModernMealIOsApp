@@ -430,6 +430,9 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
                 let anItem:Item = groceryListItemsDictionary[category_order[indexPath.section]]![indexPath.row]
                 anItem.shopped = !anItem.shopped //change the state for the last one
                 self.tabBarController?.navigationItem.rightBarButtonItems?.last?.enabled = false
+                httpController.delegator = self
+                
+                httpController.update(anItem)
 
                 undoShoppedHistory.removeObject(indexPath)
                // print("removed: \(indexPath)")
@@ -551,12 +554,12 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
     
     func msgResponse(title:String,message:String)
     {
-        dispatch_async(dispatch_get_main_queue(),
-            {
-                let popUpAlertController = UIAlertController(title: title , message: message, preferredStyle: UIAlertControllerStyle.Alert)
-                popUpAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
-                self.presentViewController(popUpAlertController, animated: true, completion: nil)
-        })
+//        dispatch_async(dispatch_get_main_queue(),
+//            {
+//                let popUpAlertController = UIAlertController(title: title , message: message, preferredStyle: UIAlertControllerStyle.Alert)
+//                popUpAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+//                self.presentViewController(popUpAlertController, animated: true, completion: nil)
+//        })
     }
 
 

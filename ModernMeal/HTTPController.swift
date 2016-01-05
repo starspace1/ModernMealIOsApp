@@ -47,7 +47,7 @@ class HTTPController
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.HTTPMethod = "POST"
             let requestData = ["email": "leslie.k.brown@gmail.com", "password":"awsedrf"] // here I modify the json dict in whit the new information
-            //let requestData = ["email": "tazvin2@gmail.com", "password":"password"] // here I modify the json dict in whit the new information
+//            let requestData = ["email": "tazvin2@gmail.com", "password":"password"] // here I modify the json dict in whit the new information
             
             //let requestData = ["email": email, "password":password] // here I modify the json dict in whit the new information
             
@@ -100,7 +100,7 @@ class HTTPController
     {
         var result = false
         
-        var tit = "Error adding \(groceryListItem.item_name!)!"
+        var tit = "Error adding \(groceryListItem.text!)!"
         var msj = "This item was added at \(groceryListItem.category)  but can not be created in the ModernMeal server because there is a problem with the Internet connection. The grocery list will be updated once the Internet connection is restored"
         
         if signedIn
@@ -144,7 +144,7 @@ class HTTPController
                                 print("--- posData:")
                                 print(postData)
                                 
-                                tit = "\(groceryListItem.item_name!) was created!"
+                                tit = "\(groceryListItem.text!) was created!"
                                 msj = "This item was added to \(groceryListItem.category) in your grocery list."
                                 
                                 

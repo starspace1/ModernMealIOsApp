@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        self.window!.tintColor = UIColor(red: 78/255, green: 111/255, blue: 34/255, alpha: 1.0)//modernmeal dark
         self.window!.tintColor = UIColor(red: 126/255, green: 177/255, blue: 56/255, alpha: 1.0)//modernmeal color
+        //UILabel.appearance().font = UIFont(name: "Raleway", size: 15)
+  
 
         return true
     }
