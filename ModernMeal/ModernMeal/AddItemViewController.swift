@@ -8,7 +8,9 @@
 
 import UIKit
 
-class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate
+
+
+class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, HTTPControllerProtocol
 {
     @IBOutlet weak var item_nameTextLabel: UILabel!
     @IBOutlet weak var recipe_nameTextLabel: UILabel!
@@ -17,6 +19,8 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
     @IBOutlet weak var recipe_nameTextField: UITextField!
     @IBOutlet weak var textTextField: UITextField!
     @IBOutlet weak var categoryPicker: UIPickerView!
+    
+//    var httpController: HTTPController!
     
     var delegator: AddItemProtocol!
     
@@ -32,6 +36,9 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
     {
         super.viewDidLoad()
         
+//        httpController = HTTPController(delegate: self)
+        httpController.delegator = self
+
         let saveItemButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveItemButtonAction:")
         
         
@@ -163,7 +170,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         {
             var isNew = false
             
-            print("adding new item")
+            
             
             //determinate the current date of updating
             let now = dateToString(NSDate())
@@ -180,6 +187,8 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
             //check if is an new Item or edition
             if let id = newItem?.id
             {
+
+                print("updating  item")
                 newItem = Item(ItemDict: NSDictionary(dictionary:
                     [
                         "id": newItem.id,
@@ -187,9 +196,9 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
                         "grocery_list_id": grocery_list_id,
                         "category": category,
                         "text": textTextField.text! ,
-                        "recipe_name": recipe_nameTextField.text!,
+                        "recipe_name": newItem.recipe_name,//recipe_nameTextField.text!,
                         "shopped": false,
-                        "item_name": item_nameTextField.text!,
+                        "item_name": newItem.item_name,//item_nameTextField.text!,
                         "created_at": created_at,
                         "updated_at": now
                     ]
@@ -197,21 +206,15 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
                 
                 newItem.method = "PUT"
                 
-                if httpController.update(newItem,viewController: self)
-                {
-                    
-                }
-                else
-                {
-
-                    
-                }
+                if httpController.update(newItem)
+                {}else{}
                 
                 
                 
             }
             else
             {
+                 print("adding new item")
                 
                 isNew = true
                 
@@ -230,16 +233,8 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
                 
                 newItem.method = "POST"
                 
-                if httpController.create(newItem,viewController: self)
-                {
-                    
-                
-                }
-                else
-                {
-
-                    
-                }
+                if httpController.create(newItem)
+                {}else{}
 
             }
         
@@ -263,6 +258,27 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         print("ID: \(item.id)")
         delegator.itemWasCreated(item,isNew: true)
     }
+    func didReceiveHTTPResults(token:String)
+    {
+        dispatch_async(dispatch_get_main_queue(),
+            {
+        })
+    }
+    
+    func delteItem(item:Item)
+    {
+    }
+    
+    func msgResponse(title:String,message:String)
+    {
+        dispatch_async(dispatch_get_main_queue(),
+        {
+                let popUpAlertController = UIAlertController(title: title , message: message, preferredStyle: UIAlertControllerStyle.Alert)
+                popUpAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+                self.presentViewController(popUpAlertController, animated: true, completion: nil)
+        })
+    }
+
     
     /*
     // MARK: - Navigation

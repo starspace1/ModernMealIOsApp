@@ -11,6 +11,8 @@ import UIKit
 
 let baseUrl = "http://mmpro-test.herokuapp.com"//set the url of the site
 
+
+
 class HTTPController
 {
     
@@ -24,12 +26,15 @@ class HTTPController
     
 
     
-    var delegator: HTTPControllerProtocol
+    var delegator: HTTPControllerProtocol!
     
     init(delegate:HTTPControllerProtocol)//,user:String, psw:String)
     {
         self.delegator = delegate
     }
+ 
+    
+
     
     //MARK: - SignIn session
     func singIn(email:String, password:String)
@@ -91,7 +96,7 @@ class HTTPController
     }
     
     //MARK: - Create item in grocery list at server
-    func create(var groceryListItem:Item,viewController:UIViewController) -> Bool
+    func create(var groceryListItem:Item) -> Bool
     {
         var result = false
         
@@ -142,12 +147,14 @@ class HTTPController
                                 tit = "\(groceryListItem.item_name!) was created!"
                                 msj = "This item was added to \(groceryListItem.category) in your grocery list."
                                 
-                                let aVC = viewController as! AddItemViewController
                                 
                                 let item:Item = Item(ItemDict: postDataDict["grocery_list_item"] as! NSDictionary)
                                 groceryListItem = item
                                 
-                                aVC.createItem(item)
+//                                let aVC = viewController as! AddItemViewController
+//                                aVC.createItem(item)
+                                self.delegator.createItem(item)
+                                
                                 
                             }
                         }
@@ -166,9 +173,7 @@ class HTTPController
                     }
                     dispatch_async(dispatch_get_main_queue(),
                     {
-                        let popUpAlertController = UIAlertController(title: tit , message: msj, preferredStyle: UIAlertControllerStyle.Alert)
-                        popUpAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
-                        viewController.presentViewController(popUpAlertController, animated: true, completion: nil)
+                        self.delegator.msgResponse(tit, message: msj)
                     })
             }
             createTask.resume()
@@ -178,7 +183,7 @@ class HTTPController
     }
     
     //MARK: - Update item in grocery list at server
-    func update(groceryListItem:Item,viewController:UIViewController) -> Bool
+    func update(var groceryListItem:Item) -> Bool
     {
         var result = false
         
@@ -193,8 +198,9 @@ class HTTPController
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.HTTPMethod = "PUT"
             
-            let updateData = ["grocery_list_item":groceryListItem.getDictionary()]
-//            let updateData = ["grocery_list_item":["shopped": groceryListItem.shopped]]
+            
+//            let updateData = ["grocery_list_item":groceryListItem.getDictionary()]
+            let updateData = ["grocery_list_item":["shopped": groceryListItem.shopped, "text":groceryListItem.text, "category":groceryListItem.category]]
             
             do
             {
@@ -215,8 +221,6 @@ class HTTPController
                     {
                         print("item was updated, response: \(response)")
                         result =  true
-                        tit = "\(groceryListItem.item_name!) was updated!"
-                        msj = "This item was updated at \(groceryListItem.category) in your grocery list."
                         
                         do
                         {
@@ -224,8 +228,21 @@ class HTTPController
                             if let postDataDict:NSDictionary = (postData as! NSDictionary)
                             {
                                 
+                                
                                 print("--- posData:")
                                 print(postData)
+                                
+                                tit = "\(groceryListItem.item_name!) was updated!"
+                                msj = "This item was updated at \(groceryListItem.category) in your grocery list."
+                                
+                                
+                                let item:Item = Item(ItemDict: postDataDict["grocery_list_item"] as! NSDictionary)
+                                groceryListItem = item
+                                
+//                                let aVC = viewController as! AddItemViewController
+//                                aVC.createItem(item)
+                                self.delegator.updateItem(item)
+                                
                             }
                         }
                         catch let error as NSError
@@ -243,9 +260,7 @@ class HTTPController
                     }
                     dispatch_async(dispatch_get_main_queue(),
                         {
-                            let popUpAlertController = UIAlertController(title: tit , message: msj, preferredStyle: UIAlertControllerStyle.Alert)
-                            popUpAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
-                            viewController.presentViewController(popUpAlertController, animated: true, completion: nil)
+                            self.delegator.msgResponse(tit, message: msj)
                     })
             }
             updateDataTask.resume()
@@ -255,7 +270,7 @@ class HTTPController
     }
     
     //MARK: - Delete item in grocery list at server
-    func delete(groceryListItem:Item,viewController:UIViewController) -> Bool
+    func delete(groceryListItem:Item) -> Bool
     {
         var result = false
         
@@ -311,10 +326,10 @@ class HTTPController
                         print("item error deleting, error: \(error?.localizedDescription)")
                         //IN HERE IS NECESSARY ADD THIS ITEM AT THE HISTORY OF NOT CONNECTION ITEMS at httpController
 
-                        let popUpAlertController = UIAlertController(title: "Error deleting \(groceryListItem.item_name)!" , message: "This item was deleted at \(groceryListItem.category)  but can not be created in the ModernMeal server because there is a problem with the Internet connection. The grocery list will be updated once the Internet connection is restored", preferredStyle: UIAlertControllerStyle.Alert)
-                        popUpAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
-                        viewController.presentViewController(popUpAlertController, animated: true, completion: nil)
-                        
+                        dispatch_async(dispatch_get_main_queue(),
+                        {
+                        self.delegator.msgResponse("Error deleting \(groceryListItem.item_name)!", message: "This item was deleted at \(groceryListItem.category)  but can not be created in the ModernMeal server because there is a problem with the Internet connection. The grocery list will be updated once the Internet connection is restored")
+                        })
                     }
                  
                     

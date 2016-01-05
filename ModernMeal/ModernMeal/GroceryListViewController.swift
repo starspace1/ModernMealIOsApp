@@ -14,10 +14,12 @@ protocol AddItemProtocol
     func itemWasCreated(item:Item,isNew:Bool)
 }
 
-class GroceryListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,AddItemProtocol
+class GroceryListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddItemProtocol, HTTPControllerProtocol
 {
     
     @IBOutlet weak var tableView: UITableView!
+    
+//    var httpController:HTTPController!
     
     var delegator:ItemsListControllerProtocol!
     var groceryList:GroceryList!
@@ -37,7 +39,10 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad()
     {
         super.viewDidLoad()
-                
+        
+//         httpController = HTTPController(delegate: self)
+        
+        httpController.delegator = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -54,6 +59,9 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
+        
+        
+        
         self.tabBarController?.navigationItem.title = groceryList.get_name()
                 
         let editItemButton = UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: "editItemButtonAction:")
@@ -292,7 +300,9 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
                 undoShoppedHistory.addObject(indexPath)
             }
             
-            httpController.update(anItem, viewController: self)
+            httpController.delegator = self
+            
+            httpController.update(anItem)
             
             currentCellIndexPath = indexPath
             
@@ -328,7 +338,7 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
                 
                 //if item was deleted in the server, delete it in the app
                
-                    if httpController.delete(anItem, viewController: self)
+                    if httpController.delete(anItem)
                     {}
                     else{}
                         
@@ -506,7 +516,7 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
 
                 groceryListItemsDictionary[category_order[currentCellIndexPath.section]]!.removeAtIndex(currentCellIndexPath.row)
                 //delete table cell
-                tableView.deleteRowsAtIndexPaths([currentCellIndexPath], withRowAnimation: .Fade)
+                //tableView.deleteRowsAtIndexPaths([currentCellIndexPath], withRowAnimation: .Fade)
                 
                 //add the modified item at the right category
                 groceryListItemsDictionary[item.category]!.append(item)
@@ -516,6 +526,39 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
         
         tableView.reloadData()
     }
+    
+    func didReceiveHTTPResults(token:String)
+    {
+        dispatch_async(dispatch_get_main_queue(),
+            {
+        })
+    }
+    
+    func updateItem(item:Item)
+    {
+        print("ID: \(item.id)")
+    }
+    
+    func createItem(item:Item)
+    {
+        print("ID: \(item.id)")
+    }
+    
+    func delteItem(item:Item)
+    {
+    
+    }
+    
+    func msgResponse(title:String,message:String)
+    {
+        dispatch_async(dispatch_get_main_queue(),
+            {
+                let popUpAlertController = UIAlertController(title: title , message: message, preferredStyle: UIAlertControllerStyle.Alert)
+                popUpAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+                self.presentViewController(popUpAlertController, animated: true, completion: nil)
+        })
+    }
+
 
     /*
     // MARK: - Navigation

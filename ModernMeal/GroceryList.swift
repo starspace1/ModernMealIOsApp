@@ -28,7 +28,7 @@ class GroceryList: NSManagedObject
     {
         if let groceryListDict:NSDictionary = api.parseJSONStringToNSDictionary(self.groceryListJSON!)!
         {
-            return groceryListDict.mutableCopy() as! NSDictionary
+            return groceryListDict.mutableCopy() as? NSDictionary
         }
         return nil
     }
@@ -135,7 +135,7 @@ class GroceryList: NSManagedObject
         
         if let grocery_list:NSDictionary = get_grocery_list()
         {
-            if let shopped:Bool = grocery_list["shopped"] as! Bool
+            if let shopped:Bool = grocery_list["shopped"] as? Bool
             {
                 return shopped
             }
@@ -180,7 +180,7 @@ class GroceryList: NSManagedObject
         if let dictionary:NSDictionary = getGroceryListJSONAsNSDictionary()
         {
             dictionary.setValue(date, forKey: "updated_at")
-            groceryListJSON = api.parseJSONNSDictionaryToString(dictionary) as! String
+            groceryListJSON = api.parseJSONNSDictionaryToString(dictionary) as? String
         }
     }
     
@@ -189,7 +189,7 @@ class GroceryList: NSManagedObject
         if let dictionary:NSDictionary = getGroceryListJSONAsNSDictionary()
         {
             dictionary.setValue(list, forKey: "grocery_list_items")
-            groceryListJSON = api.parseJSONNSDictionaryToString(dictionary) as! String
+            groceryListJSON = api.parseJSONNSDictionaryToString(dictionary) as? String
         }
     }
     

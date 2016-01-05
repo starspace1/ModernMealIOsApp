@@ -19,13 +19,19 @@ protocol APIControllerProtocol
 protocol HTTPControllerProtocol
 {
     func didReceiveHTTPResults(token:String)
-    
+    func createItem(item:Item)
+    func updateItem(item:Item)
+    func delteItem(item:Item)
+    func msgResponse(title:String,message:String)
 }
+
+
 
 protocol sendBackTaskToServerProtocol
 {
     func didReceiveTaskResults(groceryList:GroceryList)
 }
+
 
 
 //Put this in enum!
@@ -37,6 +43,8 @@ var httpController: HTTPController!
 
 class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDelegate, HTTPControllerProtocol, APIControllerProtocol, sendBackTaskToServerProtocol
 {
+    
+    
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
 
     
@@ -146,7 +154,6 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
         if segue.identifier == "PresentTaskTableViewControllerSegue"
         {
 
-            
             let navigationController = segue.destinationViewController as! UINavigationController
 
             let taskTableVC:TasksTableViewController = navigationController.viewControllers[0] as! TasksTableViewController
@@ -165,6 +172,30 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
 //                httpController.update(groceryList)
         })
     }
+    
+    func updateItem(item:Item)
+    {
+        print("ID: \(item.id)")
+    }
+    
+    func createItem(item:Item)
+    {
+        print("ID: \(item.id)")
+    }
+    
+    func delteItem(item:Item)
+    {
+    }
+    func msgResponse(title:String,message:String)
+    {
+        dispatch_async(dispatch_get_main_queue(),
+        {
+                let popUpAlertController = UIAlertController(title: title , message: message, preferredStyle: UIAlertControllerStyle.Alert)
+                popUpAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+                self.presentViewController(popUpAlertController, animated: true, completion: nil)
+        })
+    }
+    
     
     //MARK: - CoreData:
     //MARK: Load context
@@ -239,6 +270,7 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
             abort()
         }
     }
+    
         
     
 

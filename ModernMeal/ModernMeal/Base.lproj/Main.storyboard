@@ -295,7 +295,7 @@
                                     <constraint firstAttribute="height" constant="547" id="4b1-O2-U45"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ItemTableViewCell" textLabel="YlV-0Y-otW" detailTextLabel="VxR-5j-pL0" rowHeight="70" style="IBUITableViewCellStyleSubtitle" id="pYD-mh-nlI" customClass="ItemTableViewCell" customModule="ModernMeal" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ItemTableViewCell" textLabel="YlV-0Y-otW" detailTextLabel="VxR-5j-pL0" style="IBUITableViewCellStyleSubtitle" id="pYD-mh-nlI" customClass="ItemTableViewCell" customModule="ModernMeal" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pYD-mh-nlI" id="wGw-vE-You">
@@ -542,51 +542,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6yp-VA-vap" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5527" y="-481"/>
-        </scene>
-        <!--List-->
-        <scene sceneID="9sx-bl-V1p">
-            <objects>
-                <tableViewController id="x4c-fI-4xm" customClass="GroceryListTableViewController" customModule="ModernMeal" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="UIf-I4-DWO">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="ItemTableViewCell" textLabel="Dyw-Dm-82z" detailTextLabel="D6J-oP-Sw8" style="IBUITableViewCellStyleSubtitle" id="z33-gq-FpD" customClass="ItemTableViewCell" customModule="ModernMeal" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z33-gq-FpD" id="K3J-Cz-Ggb">
-                                    <rect key="frame" x="0.0" y="0.0" width="561" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Dyw-Dm-82z">
-                                            <rect key="frame" x="15" y="5" width="32" height="20"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D6J-oP-Sw8">
-                                            <rect key="frame" x="15" y="25" width="31" height="14"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="x4c-fI-4xm" id="Vly-fl-t6d"/>
-                            <outlet property="delegate" destination="x4c-fI-4xm" id="Fvd-Bo-E9u"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="List" image="list" id="Lar-a1-YA9"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Ge-ha-I3O" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6217" y="-455"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="5Jf-eR-fBy">
