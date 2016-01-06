@@ -64,51 +64,54 @@ class TasksTableViewController: UITableViewController,  ItemsListControllerProto
 
     }
     
-    func sincronizeCoredataAndDataBase( groceryListsIDsArrayFromServer:NSMutableArray, groceryListArrayOfDictionaries:[Int:NSDictionary])
+    func synchronizeCoredataAndDataBase( groceryListsIDsArrayFromServer:NSMutableArray, groceryListArrayOfDictionaries:[Int:NSDictionary])
     {
-        if loadContext() // CoreData, load context of previous information if this exists in the device
+        if groceryListsIDsArrayFromServer.count > 0 // check if there is any information to synchronize
         {
-            //compare ids by grocery list in core data
-            for aGroceryList in groceryListsArray
+            if loadContext() // CoreData, load context of previous information if this exists in the device
             {
-                if groceryListsIDsArrayFromServer.containsObject(aGroceryList.id)
+                //compare ids by grocery list in core data
+                for aGroceryList in groceryListsArray
                 {
-                    //compare lasts dates updated
-                    let aStringDate =  groceryListArrayOfDictionaries[aGroceryList.id]!["grocery_list"]!["updated_at"] as! String
+                    if groceryListsIDsArrayFromServer.containsObject(aGroceryList.id)
+                    {
+                        //compare lasts dates updated
+                        let aStringDate =  groceryListArrayOfDictionaries[aGroceryList.id]!["grocery_list"]!["updated_at"] as! String
 
-                    if  stringToDate(aStringDate).timeIntervalSince1970 > stringToDate(aGroceryList.updated_at as String).timeIntervalSince1970
-                    {
-                        //replace the las grocery List with the new one updated
-                        print("last update gl[\(aGroceryList.id)] was : \(aGroceryList.updated_at)")
-                        aGroceryList.groceryListJSON =  api.parseJSONNSDictionaryToString(groceryListArrayOfDictionaries[aGroceryList.id]!) as? String
-                        aGroceryList.setModelAtributes() //set instances of each atribute of the model GroceryList class
-                        print("new update gl[\(aGroceryList.id)] was : \(aGroceryList.updated_at)")
-                        print("SERVER: \(stringToDate(aStringDate)) IS THE MOST RECENT THAN: \(stringToDate(aGroceryList.updated_at as String))!!!")
-                        
+                        if  stringToDate(aStringDate).timeIntervalSince1970 > stringToDate(aGroceryList.updated_at as String).timeIntervalSince1970
+                        {
+                            //replace the las grocery List with the new one updated
+                            print("last update gl[\(aGroceryList.id)] was : \(aGroceryList.updated_at)")
+                            aGroceryList.groceryListJSON =  api.parseJSONNSDictionaryToString(groceryListArrayOfDictionaries[aGroceryList.id]!) as? String
+                            aGroceryList.setModelAtributes() //set instances of each atribute of the model GroceryList class
+                            print("new update gl[\(aGroceryList.id)] was : \(aGroceryList.updated_at)")
+                            print("SERVER: \(stringToDate(aStringDate)) IS THE MOST RECENT THAN: \(stringToDate(aGroceryList.updated_at as String))!!!")
+                            
+                        }
+                        else
+                        {
+                            print("COREDATA: \(stringToDate(aStringDate)) IS THE MOST RECENT THAN: \(stringToDate(aGroceryList.updated_at as String))!!!")
+                        }
+                        //for not repeat object
+                        groceryListsIDsArrayFromServer.removeObject(aGroceryList.id)
                     }
-                    else
-                    {
-                        
-                        
-                        print("COREDATA: \(stringToDate(aStringDate)) IS THE MOST RECENT THAN: \(stringToDate(aGroceryList.updated_at as String))!!!")
-                    }
-                    
-                    //for not repeat object
-                    groceryListsIDsArrayFromServer.removeObject(aGroceryList.id)
                 }
-                
+            }
+        
+        
+            if groceryListsIDsArrayFromServer.count != 0 // check if this is not empty
+            {
+                for groceryListID in groceryListsIDsArrayFromServer //add the new gls in the list
+                {
+                    addGroceryList(groceryListArrayOfDictionaries[Int(groceryListID as! NSNumber)]!)
+                    //print("--- Apended: \(groceryListID)")
+                }
                 
             }
         }
-        
-        if groceryListsIDsArrayFromServer.count != 0 // check if this is not empty
+        else
         {
-            for groceryListID in groceryListsIDsArrayFromServer //add the new gls in the list
-            {
-                addGroceryList(groceryListArrayOfDictionaries[Int(groceryListID as! NSNumber)]!)
-                //print("--- Apended: \(groceryListID)")
-            }
-            
+            loadContext() 
         }
 
         //print(groceryListArrayOfDictionaries)

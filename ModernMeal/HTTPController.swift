@@ -93,6 +93,7 @@ class HTTPController
             authentificationTask.resume()
         }
         
+        
     }
     
     //MARK: - Create item in grocery list at server

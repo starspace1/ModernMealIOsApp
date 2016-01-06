@@ -14,6 +14,7 @@ protocol APIControllerProtocol
 {
     func didReceiveAPIResults(results:NSMutableArray)
     func didReceiveListOfListsFromAPIResults(results:[Int:NSDictionary])
+    func msgResponse(title:String,message:String)
     
 }
 protocol HTTPControllerProtocol
@@ -57,40 +58,48 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
     
+    var popUpAlertController:UIAlertController!
     
     var arrayResults = [Int:NSDictionary]()
     var arrayIDs: NSMutableArray!
     
-//    var token: String = ""
     var username: String = ""
-    //var api: APIController!
     
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
         httpController = HTTPController(delegate:self)
         
         //create instance of API controller with self
         api = APIController(delegate: self)
         
-        if loadContext()
+        
+        usernameTextField.enabled = false
+        passwordTextField.enabled = false
+        signInButton.enabled = false
+        
+        if !loadContext()
         {
-           
+            usernameTextField.enabled = true
+            passwordTextField.enabled = true
+            signInButton.enabled = true
+            usernameTextField.becomeFirstResponder()
         }
         else
         {
-            usernameTextField.becomeFirstResponder()
+            dispatch_async(dispatch_get_main_queue(),
+            {
+                self.popUpAlertController = UIAlertController(title: "Synchronizing..." , message: "Synchronizing your device information with the ModernMeal service.", preferredStyle: UIAlertControllerStyle.Alert)
+                self.presentViewController(self.popUpAlertController, animated: true, completion: nil)
+            })
         }
+     
         
     }
-    
-    override func viewWillAppear(animated: Bool)
-    {
-        
-        
-    }
+
 
     override func didReceiveMemoryWarning()
     {
@@ -133,9 +142,11 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
         {
                 print(results)
             self.arrayIDs = results
+            
+            if self.arrayIDs.count > 0
+            {
                 api.getGroceryListFromAPIModernMeal(results)
-
-
+            }
         })
     }
     
@@ -163,18 +174,47 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
 
             let taskTableVC:TasksTableViewController = navigationController.viewControllers[0] as! TasksTableViewController
             taskTableVC.delegator = self
-            taskTableVC.sincronizeCoredataAndDataBase(self.arrayIDs,groceryListArrayOfDictionaries: self.arrayResults)
+            taskTableVC.synchronizeCoredataAndDataBase(self.arrayIDs,groceryListArrayOfDictionaries: self.arrayResults)
+            
             
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 
         }
     }
     
+    func msgResponse(title:String,message:String)
+    {
+        dispatch_async(dispatch_get_main_queue(),
+        {
+            self.popUpAlertController.dismissViewControllerAnimated(true, completion:
+            
+            {
+                    let popUpAlertController2 = UIAlertController(title: title , message: message, preferredStyle: UIAlertControllerStyle.Alert)
+                    
+                    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default)
+                    {
+                            UIAlertAction in
+                            NSLog("OK Pressed")
+                            self.performSegueWithIdentifier("PresentTaskTableViewControllerSegue", sender: self)
+                            
+                    }
+                    popUpAlertController2.addAction(okAction)
+                
+                    self.presentViewController(popUpAlertController2, animated: true, completion: nil)
+            })
+            
+            
+            
+        })
+    }
+    
+    
+    
     func didReceiveTaskResults(groceryList:GroceryList)
     {
         dispatch_async(dispatch_get_main_queue(),
             {
-//                httpController.update(groceryList)
+                //                httpController.update(groceryList)
         })
     }
     
@@ -191,16 +231,6 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
     func delteItem(item:Item)
     {
     }
-    func msgResponse(title:String,message:String)
-    {
-        dispatch_async(dispatch_get_main_queue(),
-        {
-                let popUpAlertController = UIAlertController(title: title , message: message, preferredStyle: UIAlertControllerStyle.Alert)
-                popUpAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
-                self.presentViewController(popUpAlertController, animated: true, completion: nil)
-        })
-    }
-    
     
     //MARK: - CoreData:
     //MARK: Load context
@@ -224,7 +254,6 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
                     
                     token = newUser.token!
                     username = newUser.name!
-                    
                 }
                 
                 
@@ -233,10 +262,6 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
                 
                 if token != ""
                 {
-                    usernameTextField.enabled = false
-                    passwordTextField.enabled = false
-                    signInButton.enabled = false
-                    
                     httpController.token = token
                     httpController.signedIn = true
                     
@@ -244,6 +269,10 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
                     api.getListOfGroceryListsFromAPIModernMeal(token)
                     return true //succes!There is information stored in Core data
 
+                }
+                else
+                {
+                    return false
                 }
                 
             }

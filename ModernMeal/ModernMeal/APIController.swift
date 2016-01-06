@@ -41,7 +41,13 @@ class APIController:NSURLSessionDataTask, NSURLSessionDelegate, NSURLSessionData
             
             if error != nil
             {
-                print(error!.localizedDescription)
+                print("error: \(error!.localizedDescription) \(error)")
+                
+                if error!.code == -1009
+                {
+                    self.delegator.msgResponse("Connection error", message: error!.localizedDescription)
+                    self.delegator.didReceiveAPIResults([])
+                }
                 
             }
             else
