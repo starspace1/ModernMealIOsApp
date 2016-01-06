@@ -21,6 +21,12 @@
             <string>Raleway</string>
             <string>Raleway</string>
             <string>Raleway</string>
+            <string>Raleway</string>
+            <string>Raleway</string>
+            <string>Raleway</string>
+            <string>Raleway</string>
+            <string>Raleway</string>
+            <string>Raleway</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -395,26 +401,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tX1-6z-arj">
-                                <rect key="frame" x="258" y="28" width="85" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item name:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tX1-6z-arj">
+                                <rect key="frame" x="256" y="28" width="88" height="20"/>
+                                <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="17"/>
                                 <color key="textColor" red="0.56470588235294117" green="0.72941176470588232" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description or quantity:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQe-pT-wyg">
-                                <rect key="frame" x="210" y="126" width="180" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description or quantity:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQe-pT-wyg">
+                                <rect key="frame" x="210" y="124" width="181" height="20"/>
+                                <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="17"/>
                                 <color key="textColor" red="0.3313965062" green="0.46688437690000001" blue="0.143904326" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXV-WD-T17">
-                                <rect key="frame" x="248" y="77" width="104" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe name:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXV-WD-T17">
+                                <rect key="frame" x="246" y="76" width="108" height="20"/>
+                                <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="17"/>
                                 <color key="textColor" red="0.56470588235294117" green="0.72941176470588232" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ztt-5w-jJy">
-                                <rect key="frame" x="30" y="101" width="540" height="17"/>
+                                <rect key="frame" x="30" y="99" width="540" height="17"/>
                                 <color key="textColor" red="0.60392156862745094" green="0.60392156862745094" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes"/>
@@ -423,9 +429,9 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g: 4 Green tomatoes" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EMp-SR-bww">
-                                <rect key="frame" x="30" y="150" width="540" height="30"/>
+                                <rect key="frame" x="30" y="147" width="540" height="30"/>
                                 <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="23"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes"/>
                                 <connections>
                                     <action selector="item_nameActionEditingDidEnd:" destination="gcc-tM-Dgv" eventType="editingDidEnd" id="PN7-ux-f34"/>
@@ -433,23 +439,23 @@
                                     <outlet property="delegate" destination="gcc-tM-Dgv" id="pAg-36-bLX"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqO-B8-Rcv">
-                                <rect key="frame" x="263" y="188" width="75" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqO-B8-Rcv">
+                                <rect key="frame" x="262" y="185" width="76" height="20"/>
+                                <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="17"/>
                                 <color key="textColor" red="0.3313965062" green="0.46688437690000001" blue="0.143904326" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fn5-wx-ceU">
-                                <rect key="frame" x="30" y="210" width="540" height="216"/>
+                                <rect key="frame" x="30" y="206" width="540" height="216"/>
                                 <connections>
                                     <outlet property="dataSource" destination="gcc-tM-Dgv" id="Zwd-A6-3Db"/>
                                     <outlet property="delegate" destination="gcc-tM-Dgv" id="2Uv-JQ-IcH"/>
                                 </connections>
                             </pickerView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X1w-hU-Uut">
-                                <rect key="frame" x="30" y="52" width="541" height="17"/>
+                                <rect key="frame" x="30" y="51" width="541" height="17"/>
                                 <color key="textColor" red="0.60392156862745094" green="0.60392156862745094" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" spellCheckingType="yes"/>
                                 <connections>
                                     <action selector="item_nameActionEditingDidEnd:" destination="gcc-tM-Dgv" eventType="editingDidEnd" id="zOu-Kb-WZw"/>
