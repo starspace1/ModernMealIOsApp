@@ -297,14 +297,14 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
                 cell!.backgroundColor = ModernMealSoftGreyColor
                 
                 anItem.shopped = true
-            }
-            else
-            {
-                cell!.accessoryType = .None
-                cell!.backgroundColor = UIColor.whiteColor()
-                
-                anItem.shopped = false
-            }
+//            }
+//            else
+//            {
+//                cell!.accessoryType = .None
+//                cell!.backgroundColor = UIColor.whiteColor()
+//                
+//                anItem.shopped = false
+//            }
             
                 if !undoShoppedHistory.containsObject(indexPath)
                 {
@@ -318,6 +318,7 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
                 currentCellIndexPath = indexPath
                 
                 self.tabBarController?.navigationItem.rightBarButtonItems?.last?.enabled = true
+            }
             
 
             //tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -448,11 +449,7 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
                 httpController.update(anItem)
 
                 undoShoppedHistory.removeObject(indexPath)
-               // print("removed: \(indexPath)")
-                
-//                cell.backgroundColor = UIColor.whiteColor()
-//                cell.textLabel?.backgroundColor = UIColor.whiteColor()
-//                cell.detailTextLabel?.backgroundColor = UIColor.whiteColor()
+
                 
                 tableView.reloadData()
             }

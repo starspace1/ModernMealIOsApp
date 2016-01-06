@@ -81,6 +81,7 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
         passwordTextField.enabled = false
         signInButton.enabled = false
         
+        
         if !loadContext()
         {
             usernameTextField.enabled = true
@@ -145,6 +146,7 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
             
             if self.arrayIDs.count > 0
             {
+                
                 api.getGroceryListFromAPIModernMeal(results)
             }
         })
@@ -169,15 +171,16 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
     {
         if segue.identifier == "PresentTaskTableViewControllerSegue"
         {
+            self.popUpAlertController.dismissViewControllerAnimated(true, completion:
+            {
+                let navigationController = segue.destinationViewController as! UINavigationController
 
-            let navigationController = segue.destinationViewController as! UINavigationController
-
-            let taskTableVC:TasksTableViewController = navigationController.viewControllers[0] as! TasksTableViewController
-            taskTableVC.delegator = self
-            taskTableVC.synchronizeCoredataAndDataBase(self.arrayIDs,groceryListArrayOfDictionaries: self.arrayResults)
-            
-            
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                let taskTableVC:TasksTableViewController = navigationController.viewControllers[0] as! TasksTableViewController
+                taskTableVC.delegator = self
+                taskTableVC.synchronizeCoredataAndDataBase(self.arrayIDs,groceryListArrayOfDictionaries: self.arrayResults)
+                
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            })
 
         }
     }
@@ -202,9 +205,7 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
                 
                     self.presentViewController(popUpAlertController2, animated: true, completion: nil)
             })
-            
-            
-            
+
         })
     }
     

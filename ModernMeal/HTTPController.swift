@@ -24,9 +24,9 @@ class HTTPController
     private var email: String = ""
     private var psw: String = ""
     
-
-    
     var delegator: HTTPControllerProtocol!
+    
+    var historyItemsArray: NSMutableArray = []
     
     init(delegate:HTTPControllerProtocol)//,user:String, psw:String)
     {
@@ -169,8 +169,11 @@ class HTTPController
                     {
                         print("item error updating, error: \(error?.localizedDescription)")
                         
-                        //IN HERE IS NECESSARY ADD THIS ITEM AT THE HISTORY OF NOT CONNECTION ITEMS at httpController
-                        
+                        if error!.code == -1009
+                        {
+                            tit = "\(groceryListItem.text!) can't be created"
+                            msj = error!.localizedDescription
+                        }
                     }
                     dispatch_async(dispatch_get_main_queue(),
                     {
@@ -255,8 +258,14 @@ class HTTPController
                     else
                     {
                         print("item error updating, error: \(error?.localizedDescription)")
-                        //IN HERE IS NECESSARY ADD THIS ITEM AT THE HISTORY OF NOT CONNECTION ITEMS at httpController
-
+                        
+                        if error!.code == -1009
+                        {
+                            tit = "\(groceryListItem.text!) will be updated"
+                            msj = error!.localizedDescription + tit + " once Internet connection is restored"
+                            
+                            self.historyItemsArray.addObject(groceryListItem)
+                        }
                         
                     }
                     dispatch_async(dispatch_get_main_queue(),
@@ -326,22 +335,30 @@ class HTTPController
                     {
                         print("item error deleting, error: \(error?.localizedDescription)")
                         //IN HERE IS NECESSARY ADD THIS ITEM AT THE HISTORY OF NOT CONNECTION ITEMS at httpController
-
-                        dispatch_async(dispatch_get_main_queue(),
+                        
+                        if error!.code == -1009
                         {
-                        self.delegator.msgResponse("Error deleting \(groceryListItem.item_name)!", message: "This item was deleted at \(groceryListItem.category)  but can not be created in the ModernMeal server because there is a problem with the Internet connection. The grocery list will be updated once the Internet connection is restored")
-                        })
+                            var tit = "\(groceryListItem.text!) will be deleted"
+                            var msj = error!.localizedDescription + tit + " once Internet connection is restored"
+                            dispatch_async(dispatch_get_main_queue(),
+                                {
+                                    self.delegator.msgResponse(tit, message: msj)
+                            })
+                            //                        dispatch_async(dispatch_get_main_queue(),
+                            //                        {
+                            //                        self.delegator.msgResponse("Error deleting \(groceryListItem.item_name)!", message: "This item was deleted at \(groceryListItem.category)  but can not be deleted in the ModernMeal server because there is a problem with the Internet connection. The grocery list will be updated once the Internet connection is restored")
+                            //                        })
+                            self.historyItemsArray.addObject(groceryListItem)
+                        }
+  
                     }
-                 
                     
             }
             deleteTask.resume()
         }
-//        dispatch_async(dispatch_get_main_queue(),
-//        {
+
             return result
-//        })
-        
+  
     }
 
 }
