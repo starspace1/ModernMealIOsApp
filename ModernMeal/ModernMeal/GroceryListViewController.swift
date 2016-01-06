@@ -261,10 +261,18 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
             cell.detailTextLabel?.text = anItem.recipe_name
             cell.detailTextLabel?.numberOfLines = 0
             cell.accessoryType = .None
+            cell.backgroundColor = UIColor.whiteColor()
+            cell.textLabel?.backgroundColor = UIColor.whiteColor()
+            cell.detailTextLabel?.backgroundColor = UIColor.whiteColor()
             
             if anItem.shopped
             {
                 cell.accessoryType = .Checkmark
+                cell.backgroundColor = ModernMealSoftGreenColor
+                
+                cell.textLabel?.backgroundColor = ModernMealSoftGreenColor
+                cell.detailTextLabel?.backgroundColor = ModernMealSoftGreenColor
+
             }
             
         }
@@ -281,19 +289,23 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
         {
             
             let cell = tableView.cellForRowAtIndexPath(indexPath)
+            cell?.backgroundColor = UIColor.whiteColor()
             
             if cell!.accessoryType == UITableViewCellAccessoryType.None
             {
                 cell!.accessoryType = .Checkmark
+                cell?.backgroundColor = ModernMealSoftGreenColor
+                cell!.textLabel?.backgroundColor = ModernMealSoftGreenColor
+                cell!.detailTextLabel?.backgroundColor = ModernMealSoftGreenColor
 //                undoHistory.addObject(indexPath)
                 anItem.shopped = true
             }
-            else
-            {
-                cell!.accessoryType = .None
-//                undoHistory.removeObject(indexPath)
-                anItem.shopped = false
-            }
+//            else
+//            {
+//                cell!.accessoryType = .None
+////                undoHistory.removeObject(indexPath)
+//                anItem.shopped = false
+//            }
             
             if !undoShoppedHistory.containsObject(indexPath)
             {
@@ -403,6 +415,9 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
         
         //Style 2
         //        header.contentView.backgroundColor = ModernMealGreenColor //make the background color light blue
+        //UILabel.appearance().font = UIFont(name: "Raleway", size: 15)
+        header.textLabel?.font = UIFont(name: "Raleway", size: 16)
+
         header.textLabel!.textColor = ModernMealGreenColor//make the text white
         header.textLabel!.textAlignment = .Center
         

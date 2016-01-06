@@ -261,6 +261,8 @@ class TasksTableViewController: UITableViewController,  ItemsListControllerProto
         header.contentView.backgroundColor = UIColor.whiteColor() //make the background color light blue
         header.textLabel!.textColor = ModernMealGreenColor//make the text white
         header.textLabel!.textAlignment = .Center
+        header.textLabel?.font = UIFont(name: "Raleway-Bold", size: 16)
+
         
         // header.alpha = 0.5 //make the header transparent
     }

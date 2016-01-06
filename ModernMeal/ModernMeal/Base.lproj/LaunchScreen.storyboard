@@ -38,4 +38,5 @@
     <resources>
         <image name="logo" width="600" height="600"/>
     </resources>
+    <color key="tintColor" red="0.3313965062" green="0.46688437690000001" blue="0.143904326" alpha="1" colorSpace="calibratedRGB"/>
 </document>

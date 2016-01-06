@@ -35,8 +35,13 @@ protocol sendBackTaskToServerProtocol
 
 
 //Put this in enum!
-var ModernMealDarkGreenColor:UIColor = UIColor(red: 78/255, green: 111/255, blue: 34/255, alpha: 1.0)
-var ModernMealGreenColor: UIColor = UIColor(red: 126/255, green: 177/255, blue: 56/255, alpha: 1.0)
+var ModernMealDarkGreenColor:UIColor = UIColor(red: 74/255, green: 107/255, blue: 22/255, alpha: 1.0)//#4A6B16
+var ModernMealGreenColor: UIColor = UIColor(red: 126/255, green: 162/255, blue: 63/255, alpha: 1.0)//#7ba23f
+var ModernMealSoftGreenColor: UIColor = UIColor(red: 144/255, green: 186/255, blue: 80/255, alpha: 1.0)//#90ba50
+
+var ModernMealStrongGreyColor: UIColor = UIColor(red: 68/255, green: 68/255, blue: 68/255, alpha: 1.0)//#444444
+var ModernMealGreyColor: UIColor = UIColor(red: 154/255, green: 154/255, blue: 154/255, alpha: 1.0)//#9a9a9a
+var ModernMealSoftGreyColor: UIColor = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1.0)//#F2F2F2
 
 var api: APIController!
 var httpController: HTTPController!
