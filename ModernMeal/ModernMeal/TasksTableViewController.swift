@@ -60,14 +60,16 @@ class TasksTableViewController: UITableViewController,  ItemsListControllerProto
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        loadContext()
+        tableView.reloadData()
         
 
     }
     
     func synchronizeCoredataAndDataBase( groceryListsIDsArrayFromServer:NSMutableArray, groceryListArrayOfDictionaries:[Int:NSDictionary])
     {
-        if groceryListsIDsArrayFromServer.count > 0 // check if there is any information to synchronize
-        {
+//        if groceryListsIDsArrayFromServer.count > 0 // check if there is any information to synchronize
+//        {
             if loadContext() // CoreData, load context of previous information if this exists in the device
             {
                 //compare ids by grocery list in core data
@@ -99,7 +101,7 @@ class TasksTableViewController: UITableViewController,  ItemsListControllerProto
             }
         
         
-            if groceryListsIDsArrayFromServer.count != 0 // check if this is not empty
+            if groceryListsIDsArrayFromServer.count > 0 // check if this is not empty
             {
                 for groceryListID in groceryListsIDsArrayFromServer //add the new gls in the list
                 {
@@ -108,11 +110,12 @@ class TasksTableViewController: UITableViewController,  ItemsListControllerProto
                 }
                 
             }
-        }
-        else
-        {
-            loadContext() 
-        }
+//        }
+//        else
+//        {
+//            loadContext()
+//            tableView.reloadData()
+//        }
 
         //print(groceryListArrayOfDictionaries)
     }
@@ -353,7 +356,7 @@ class TasksTableViewController: UITableViewController,  ItemsListControllerProto
         saveContext()
         groceryListsArray[groceryListSelectedIndexPath.row].setModelAtributes() //(reload)set instances of each atribute of the model GroceryList class
         
-        delegator.didReceiveTaskResults(groceryListsArray[groceryListSelectedIndexPath.row])
+//        delegator.didReceiveTaskResults(groceryListsArray[groceryListSelectedIndexPath.row])
         
         tableView.reloadData()
         
@@ -399,8 +402,7 @@ class TasksTableViewController: UITableViewController,  ItemsListControllerProto
     func loadContext() -> Bool
     {
         let fetchRequest = NSFetchRequest (entityName: "GroceryList")        //fethc the list of task from core data
-        
-        
+   
         do
         {
             //conver the result from coredata in array
@@ -420,13 +422,10 @@ class TasksTableViewController: UITableViewController,  ItemsListControllerProto
                     groceryListsIDsArray.append(newGroceryList.id)
 
                 }
-                
-                
-            
+
                 //print(groceryListsIDsArray)
                 return true //succes!There is information stored in Core data
             }
-
         }
             
         catch

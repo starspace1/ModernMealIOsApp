@@ -46,7 +46,6 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        //groceryListItems = groceryList["grocery_list_items"] as NSArray as Array
         
         createDictionaryOfItems()
         
@@ -65,12 +64,16 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
         self.tabBarController?.navigationItem.title = groceryList.get_name()
                 
         let editItemButton = UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: "editItemButtonAction:")
+        
 
         let addItemButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addItemButtonAction:")
  
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.tabBarController?.navigationItem.rightBarButtonItems = [addItemButton, editItemButton]//self.editButtonItem()]
+        
+//        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : ModernMealDarkGreenColor, NSFontAttributeName: UIFont(name: "Raleway-Bold", size: 16)!]//reference [2]
+        
         
         self.tabBarController?.navigationItem.rightBarButtonItems?.last?.enabled = false
        
@@ -312,14 +315,14 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
                 }
                 
                 httpController.delegator = self
-                
                 httpController.update(anItem)
                 
-                currentCellIndexPath = indexPath
                 
-                self.tabBarController?.navigationItem.rightBarButtonItems?.last?.enabled = true
             }
-            
+            //enable item edition mode
+            currentCellIndexPath = indexPath
+            self.tabBarController?.navigationItem.rightBarButtonItems?.last?.enabled = true
+
 
             //tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }

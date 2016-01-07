@@ -17,8 +17,7 @@ class HTTPController
 {
     
     var request: NSMutableURLRequest!
-    //var baseUrl = "http://mmpro-test.herokuapp.com"//set the url of the site
-    var token: String!
+    private var token: String!
     var signedIn: Bool = false
     
     private var email: String = ""
@@ -32,10 +31,12 @@ class HTTPController
     {
         self.delegator = delegate
     }
+    
+    func setToken(tok:String)
+    {
+        token = tok
+    }
  
-    
-
-    
     //MARK: - SignIn session
     func singIn(email:String, password:String)
     {
@@ -102,7 +103,7 @@ class HTTPController
         var result = false
         
         var tit = "Error adding \(groceryListItem.text!)!"
-        var msj = "This item was added at \(groceryListItem.category)  but can not be created in the ModernMeal server because there is a problem with the Internet connection. The grocery list will be updated once the Internet connection is restored"
+        var msj = "This item was added at \(groceryListItem.category)  but can not be created in the Modernmeal server because there is a problem with the Internet connection. The grocery list will be updated once the Internet connection is restored"
         
         if signedIn
         {
@@ -192,7 +193,7 @@ class HTTPController
         var result = false
         
         var tit = "Error updating \(groceryListItem.item_name!)!"
-        var msj = "This item was updated at \(groceryListItem.category) but can not be updated in the ModernMeal server because there is a problem with the Internet connection. The grocery list will be updated once the Internet connection is restored"
+        var msj = "This item was updated at \(groceryListItem.category) but can not be updated in the Modernmeal server because there is a problem with the Internet connection. The grocery list will be updated once the Internet connection is restored"
         
         if signedIn
         {
@@ -338,17 +339,19 @@ class HTTPController
                         
                         if error!.code == -1009
                         {
-                            var tit = "\(groceryListItem.text!) will be deleted"
-                            var msj = error!.localizedDescription + tit + " once Internet connection is restored"
+                            let tit = "\(groceryListItem.text!) will be deleted"
+                            let msj = error!.localizedDescription + tit + " once Internet connection is restored"
+                            
+                            self.historyItemsArray.addObject(groceryListItem)
+
                             dispatch_async(dispatch_get_main_queue(),
-                                {
+                            {
                                     self.delegator.msgResponse(tit, message: msj)
                             })
                             //                        dispatch_async(dispatch_get_main_queue(),
                             //                        {
-                            //                        self.delegator.msgResponse("Error deleting \(groceryListItem.item_name)!", message: "This item was deleted at \(groceryListItem.category)  but can not be deleted in the ModernMeal server because there is a problem with the Internet connection. The grocery list will be updated once the Internet connection is restored")
+                            //                        self.delegator.msgResponse("Error deleting \(groceryListItem.item_name)!", message: "This item was deleted at \(groceryListItem.category)  but can not be deleted in the Modernmeal server because there is a problem with the Internet connection. The grocery list will be updated once the Internet connection is restored")
                             //                        })
-                            self.historyItemsArray.addObject(groceryListItem)
                         }
   
                     }
@@ -356,9 +359,95 @@ class HTTPController
             }
             deleteTask.resume()
         }
-
             return result
-  
     }
+    
+    func historyStoredTSynchronization()
+    {
+        if historyItemsArray.count > 0
+        {
+            let groceryListItem:Item = historyItemsArray.firstObject as! Item
+        
+            if signedIn
+            {
+                let fullUrl = "\(baseUrl)/api/v1/grocery_list_items/\(groceryListItem.id)?auth_token="+token
+                let request = NSMutableURLRequest(URL: NSURL(string: fullUrl)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60.0)
+                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.addValue("application/json", forHTTPHeaderField: "Accept")
+                
+                request.HTTPMethod = groceryListItem.method
+                
+                var genericData = groceryListItem.getDictionary()
+
+                if groceryListItem.method == "PUT"
+                {
+                    genericData = ["grocery_list_item":["shopped": groceryListItem.shopped, "text":groceryListItem.text, "category":groceryListItem.category]]
+                }
+             
+                do
+                {
+                    let postData = try NSJSONSerialization.dataWithJSONObject(genericData, options: NSJSONWritingOptions.PrettyPrinted)
+                    request.HTTPBody = postData
+                }
+                catch let error as NSError
+                {
+                    print("data couldn't be parsed in genericTransaction: \(error)")
+                }
+                
+                let session = NSURLSession.sharedSession()
+                let genericTask: NSURLSessionDataTask = session.dataTaskWithRequest(request) // here I send the json file modified
+                {
+                        data, response, error -> Void in
+                        
+                    if error == nil
+                    {
+                        print("item was done, response: \(response)")
+                        
+                        do
+                        {
+                            let postData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+                            if let postDataDict:NSDictionary = (postData as! NSDictionary)
+                            {
+                                print("--- posData:")
+                                print(postData)
+//                                self.historyItemsArray.removeObject(groceryListItem)
+                                self.historyItemsArray.removeObjectAtIndex(0)
+                                self.historyStoredTSynchronization()
+                            }
+                        }
+                        catch let error as NSError
+                        {
+                            print("data couln't be parsed in sign in genericTask: \(error)")
+                        }
+                    }
+                    else
+                    {
+                        print("item error sendig stored item, error: \(error?.localizedDescription)")
+                        
+                        if error!.code == -1009
+                        {
+//                            var tit = "\(groceryListItem.text!) will be deleted"
+//                            var msj = error!.localizedDescription + tit + " once Internet connection is restored"
+//                                dispatch_async(dispatch_get_main_queue(),
+//                                {
+//                                        self.delegator.msgResponse(tit, message: msj)
+//                                })
+                        }
+                    }
+                }
+                genericTask.resume()
+            }
+        }
+        else
+        {
+            dispatch_async(dispatch_get_main_queue(),
+                {
+                    api.getListOfGroceryListsFromAPIModernMeal(self.token)
+                    
+            })
+        }
+
+    }
+    
 
 }

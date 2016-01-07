@@ -9,10 +9,23 @@
 import UIKit
 import CoreData
 
+//MARK: - ModernMeal style colors
+var ModernMealDarkGreenColor:UIColor = UIColor(red: 74/255, green: 107/255, blue: 22/255, alpha: 1.0)//#4A6B16
+var ModernMealGreenColor: UIColor = UIColor(red: 126/255, green: 162/255, blue: 63/255, alpha: 1.0)//#7ba23f
+var ModernMealSoftGreenColor: UIColor = UIColor(red: 144/255, green: 186/255, blue: 80/255, alpha: 1.0)//#90ba50
+
+var ModernMealStrongGreyColor: UIColor = UIColor(red: 68/255, green: 68/255, blue: 68/255, alpha: 1.0)//#444444
+var ModernMealGreyColor: UIColor = UIColor(red: 154/255, green: 154/255, blue: 154/255, alpha: 1.0)//#9a9a9a
+var ModernMealSoftGreyColor: UIColor = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1.0)//#F2F2F2
+
+var ModernMealOrangeColor: UIColor =  UIColor(red: 254/255, green: 117/255, blue: 0/255, alpha: 1.0) /* #fe7500 */
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
@@ -23,9 +36,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // ...
         
-//        self.window!.tintColor = UIColor(red: 78/255, green: 111/255, blue: 34/255, alpha: 1.0)//modernmeal dark
-        self.window!.tintColor = UIColor(red: 126/255, green: 177/255, blue: 56/255, alpha: 1.0)//modernmeal color
-        //UILabel.appearance().font = UIFont(name: "Raleway", size: 15)
+//MARK: - App general style <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        //general
+        self.window!.tintColor = ModernMealOrangeColor
+//      UILabel.appearance().font = UIFont(name: "Raleway", size: 15)
+        
+        //navigation buttons
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName : ModernMealOrangeColor, NSFontAttributeName: UIFont(name: "Raleway-Bold", size: 15)!], forState: UIControlState.Highlighted)
+        
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName : ModernMealGreyColor, NSFontAttributeName: UIFont(name: "Raleway", size: 15)!], forState: UIControlState.Disabled)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName : ModernMealOrangeColor, NSFontAttributeName: UIFont(name: "Raleway", size: 15)!], forState: UIControlState.Normal)
+        
+        //navigation bar and titles
+//      UINavigationBar.appearance().barTintColor = UIColor(red: 234.0/255.0, green: 46.0/255.0, blue: 73.0/255.0, alpha: 1.0)
+        UINavigationBar.appearance().tintColor = ModernMealOrangeColor
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : ModernMealGreenColor, NSFontAttributeName: UIFont(name: "Raleway-Bold", size: 18)!]//reference [1][2]
+
   
 
         return true
@@ -120,3 +146,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+//reference [1] : http://stackoverflow.com/questions/25388214/how-do-i-change-navigationbar-font-in-swift
+//reference [2] : http://stackoverflow.com/questions/26008536/navigationbar-bar-tint-and-title-text-color-in-ios-8

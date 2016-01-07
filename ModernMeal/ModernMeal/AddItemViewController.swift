@@ -144,11 +144,25 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         return category_order.count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
+    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView //reference [1]
     {
-        
-        return category_order[row]
+        let pickerLabel = UILabel()
+        pickerLabel.textColor = ModernMealStrongGreyColor
+        pickerLabel.numberOfLines = 0
+        pickerLabel.text = category_order[row] //"ModernMeal"
+//                 pickerLabel.font = UIFont(name: pickerLabel.font.fontName, size: 23)
+        pickerLabel.font = UIFont(name: "Raleway", size: 20) // In this use your custom font
+        pickerLabel.textAlignment = NSTextAlignment.Center
+        return pickerLabel
     }
+    
+
+    
+//    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
+//    {
+//        
+//        return category_order[row]
+//    }
     
     //MARK: - Helpers
     func dateToString(aDate:NSDate) -> String
@@ -291,3 +305,4 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
     */
     
 }
+// reference [1] http://stackoverflow.com/questions/27455345/uipickerview-wont-allow-changing-font-name-and-size-via-delegates-attributedt
