@@ -194,17 +194,21 @@ class HTTPController
                     }
                     else
                     {
-                        print("item error updating, error: \(error?.localizedDescription)")
+                        print("item error creating, error: \(error?.localizedDescription)")
                         
                         if error!.code == -1009
                         {
-                            tit = "\(groceryListItem.text!) can't be created"
-                            msj = error!.localizedDescription
+                            tit = "\(groceryListItem.text!) will be created."
+                            msj = error!.localizedDescription + " So" + tit + " once Internet connection is restored"
+                            
+                            groceryListItem.method = "POST"
+                            self.addItemOfflineArray(groceryListItem)
                         }
+                        
                     }
                     dispatch_async(dispatch_get_main_queue(),
-                    {
-                        self.delegator.msgResponse(tit, message: msj)
+                        {
+                            self.delegator.msgResponse(tit, message: msj)
                     })
             }
             createTask.resume()
@@ -399,7 +403,15 @@ class HTTPController
         
             if signedIn
             {
-                let fullUrl = "\(baseUrl)/api/v1/grocery_list_items/\(groceryListItem.id)?auth_token="+token
+                var fullUrl = ""
+                if groceryListItem.method == "POST"
+                {
+                    fullUrl = "\(baseUrl)/api/v1/grocery_list_items.json/?auth_token="+token
+                }
+                else
+                {
+                    fullUrl = "\(baseUrl)/api/v1/grocery_list_items/\(groceryListItem.id)?auth_token="+token
+                }
                 let request = NSMutableURLRequest(URL: NSURL(string: fullUrl)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60.0)
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                 request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -420,9 +432,19 @@ class HTTPController
                 {
                     request.HTTPMethod  = "DELETE"
                     
-                    genericData = groceryListItem.dictionary
+                    genericData = ["grocery_list_item":groceryListItem.dictionary]
                     
                     print("SYNCRONIZED WITH DELETE")
+                    
+                }
+                
+                if groceryListItem.method == "POST"//"Optional(\"DELETE\")"
+                {
+                    request.HTTPMethod  = "POST"
+                    
+                    genericData = ["grocery_list_item":groceryListItem.dictionary]
+                    
+                    print("SYNCRONIZED WITH POST")
                     
                 }
              
