@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 let baseUrl = "http://mmpro-test.herokuapp.com"//set the url of the site
 
@@ -19,17 +20,21 @@ class HTTPController
     var request: NSMutableURLRequest!
     private var token: String!
     var signedIn: Bool = false
+    private var username: String!
     
     private var email: String = ""
     private var psw: String = ""
     
     var delegator: HTTPControllerProtocol!
     
-    var historyItemsArray: NSMutableArray = []
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    var itemOfflineArray: Array<ItemOfflineStored> = []
     
     init(delegate:HTTPControllerProtocol)//,user:String, psw:String)
     {
         self.delegator = delegate
+        
+        loadContext()
     }
     
     func setToken(tok:String)
@@ -42,6 +47,9 @@ class HTTPController
     {
         if token == nil
         {
+            var tit = "Sorry!"///be careful with this message! it have to be same at the main controller view validation
+            var msj = "There is an problem trying to access with \(email) account"
+            
             let fullUrl = "\(baseUrl)/sessions/create.json?"
             let request = NSMutableURLRequest(URL: NSURL(string: fullUrl)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60.0)
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -76,6 +84,7 @@ class HTTPController
                             if let postDataDict:NSDictionary = (postData as! NSDictionary)
                             {
                                 self.token = postDataDict["token"] as! NSString as String
+                                self.username = postDataDict["username"] as! NSString as String
                                 print("--- token:")
                                 print(self.token)
                                 print("--- posData:")
@@ -90,6 +99,23 @@ class HTTPController
                         }
                         
                     }
+                    else
+                    {
+                        if error!.code == -1009
+                        {
+                            tit = "Connection error!"///be careful with this message! it have to be same at the main controller view validation
+                            msj = error!.localizedDescription + " Try again once Internet connection is restored"
+                            
+                        }
+                        
+                        dispatch_async(dispatch_get_main_queue(),
+                            {
+                                self.delegator.msgResponse(tit, message: msj)
+                        })
+                        
+                    }
+                    
+
             }
             authentificationTask.resume()
         }
@@ -265,7 +291,8 @@ class HTTPController
                             tit = "\(groceryListItem.text!) will be updated"
                             msj = error!.localizedDescription + tit + " once Internet connection is restored"
                             
-                            self.historyItemsArray.addObject(groceryListItem)
+                            groceryListItem.method = "PUT"
+                            self.addItemOfflineArray(groceryListItem)
                         }
                         
                     }
@@ -321,7 +348,6 @@ class HTTPController
                             let postData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
                             if let postDataDict:NSDictionary = (postData as! NSDictionary)
                             {
-                                
                                 print("--- posData:")
                                 print(postData)
                             }
@@ -330,7 +356,6 @@ class HTTPController
                         {
                             print("data couln't be parsed in sign in delete task: \(error)")
                         }
-                        
                     }
                     else
                     {
@@ -342,7 +367,8 @@ class HTTPController
                             let tit = "\(groceryListItem.text!) will be deleted"
                             let msj = error!.localizedDescription + tit + " once Internet connection is restored"
                             
-                            self.historyItemsArray.addObject(groceryListItem)
+                            groceryListItem.method = "DELETE"
+                            self.addItemOfflineArray(groceryListItem)
 
                             dispatch_async(dispatch_get_main_queue(),
                             {
@@ -364,9 +390,12 @@ class HTTPController
     
     func historyStoredTSynchronization()
     {
-        if historyItemsArray.count > 0
+        print("FIRST CALL OF historyStoredTSynchronization!!!")
+
+        if itemOfflineArray.count > 0
         {
-            let groceryListItem:Item = historyItemsArray.firstObject as! Item
+            let groceryListItem = itemOfflineArray.first!
+            groceryListItem.setItemAttributes()
         
             if signedIn
             {
@@ -375,13 +404,26 @@ class HTTPController
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                 request.addValue("application/json", forHTTPHeaderField: "Accept")
                 
-                request.HTTPMethod = groceryListItem.method
+                var genericData = [:]
                 
-                var genericData = groceryListItem.getDictionary()
-
-                if groceryListItem.method == "PUT"
+                print(" SENDING itemOfflineArray \(groceryListItem.id)")
+                
+                if groceryListItem.method == "PUT"//"Optional(\"PUT\")"
                 {
+                    request.HTTPMethod  = "PUT"
+                    
                     genericData = ["grocery_list_item":["shopped": groceryListItem.shopped, "text":groceryListItem.text, "category":groceryListItem.category]]
+                    print("SYNCRONIZED WITH PUT")
+
+                }
+                if groceryListItem.method == "DELETE"//"Optional(\"DELETE\")"
+                {
+                    request.HTTPMethod  = "DELETE"
+                    
+                    genericData = groceryListItem.dictionary
+                    
+                    print("SYNCRONIZED WITH DELETE")
+                    
                 }
              
                 do
@@ -401,18 +443,22 @@ class HTTPController
                         
                     if error == nil
                     {
-                        print("item was done, response: \(response)")
+                        print("item was done!!, response: \(response)")
                         
                         do
                         {
                             let postData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+                            self.itemOfflineArray.removeFirst()
+                            self.managedObjectContext.deleteObject(groceryListItem)
+                            self.saveContext()
+                            
+                            self.historyStoredTSynchronization()
+                            
                             if let postDataDict:NSDictionary = (postData as! NSDictionary)
                             {
                                 print("--- posData:")
                                 print(postData)
-//                                self.historyItemsArray.removeObject(groceryListItem)
-                                self.historyItemsArray.removeObjectAtIndex(0)
-                                self.historyStoredTSynchronization()
+                                
                             }
                         }
                         catch let error as NSError
@@ -441,13 +487,101 @@ class HTTPController
         else
         {
             dispatch_async(dispatch_get_main_queue(),
-                {
+            {
+                print("END OF ITEMS OF historyStoredTSynchronization!!!")
+                
                     api.getListOfGroceryListsFromAPIModernMeal(self.token)
-                    
             })
         }
 
     }
+    
+    //===================================================================================================================
+    //MARK: - CoreData
+    //===================================================================================================================
+    
+    //MARK: Create new core data ItemOfflineStored object and save it
+    func addItemOfflineArray(anItem:Item)
+    {
+        if let dictionaryString = api.parseJSONNSDictionaryToString(anItem.dictionary) as? String
+        {
+            // create a new core data object
+            let newStoredItem = NSEntityDescription.insertNewObjectForEntityForName("ItemOfflineStored", inManagedObjectContext: managedObjectContext) as! ItemOfflineStored
+            
+            newStoredItem.itemDictionarystring = dictionaryString
+//            newStoredItem.setItemAttributes(anItem.dictionary)
+//            newStoredItem.dictionary = anItem.dictionary
+            newStoredItem.method = anItem.method
+            
+//            newStoredItem.setAllAttributesInDictionary() //set instances of each atribute of the model ItemOfflineStored class
+            itemOfflineArray.append(newStoredItem)
+            print("---- item offline was saved dic: \(newStoredItem.dictionary)")
+
+            saveContext()
+        }
+    }
+    
+    //MARK: Load context
+    func loadContext() -> Bool
+    {
+        //fethc the list of task from core data
+        let fetchRequest = NSFetchRequest (entityName: "ItemOfflineStored")
+        
+        do
+        {
+            //conver the result from coredata in array
+            if let fetchRequestResults = try managedObjectContext.executeFetchRequest(fetchRequest) as? Array<ItemOfflineStored>
+            {
+                // To make equal the array coredata to array<itemOfflineArray>
+                itemOfflineArray = fetchRequestResults //<============================
+                // print(groceryListsArray)
+                if itemOfflineArray.count > 0
+                {
+                    for ItemOffline in itemOfflineArray
+                    {
+                        
+                        let newItemOffline:ItemOfflineStored = ItemOffline as ItemOfflineStored
+                        print("---- item offline dic: \(newItemOffline.dictionary) method: \(newItemOffline.method)")
+                        
+                    }
+                    //print(itemOfflineArray)
+                    return true //succes!There is information stored in Core data
+                }
+                else
+                {
+                    return false //Is empty Core data
+                }
+            }
+        }
+            
+        catch
+        {
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
+        }
+        
+        return false //Is empty Core data
+    }
+
+
+    
+    //MARK: Save context
+    func saveContext()
+    {
+        do
+        {
+            try managedObjectContext.save()
+        }
+        catch
+        {
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
+        }
+    }
+    
+
     
 
 }

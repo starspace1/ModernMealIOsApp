@@ -86,7 +86,10 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
         {
             dispatch_async(dispatch_get_main_queue(),
             {
-                self.popUpAlertController = UIAlertController(title: "Synchronizing..." , message: "Synchronizing your device information with the ModernMeal service.", preferredStyle: UIAlertControllerStyle.Alert)
+                self.popUpAlertController = UIAlertController(title: "Synchronizing..." , message: "Synchronizing your device information with the Modernmeal service.", preferredStyle: UIAlertControllerStyle.Alert)
+                print("CALL historyStoredTSynchronization")
+                httpController.historyStoredTSynchronization()
+                
                 self.presentViewController(self.popUpAlertController, animated: true, completion: nil)
             })
         }
@@ -106,7 +109,7 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
         
         dispatch_async(dispatch_get_main_queue(),
             {
-                self.popUpAlertController = UIAlertController(title: "Synchronizing..." , message: "Synchronizing your device information with the ModernMeal service.", preferredStyle: UIAlertControllerStyle.Alert)
+                self.popUpAlertController = UIAlertController(title: "Synchronizing..." , message: "Synchronizing your device information with the Modernmeal service.", preferredStyle: UIAlertControllerStyle.Alert)
                 self.presentViewController(self.popUpAlertController, animated: true, completion: nil)
         })
         
@@ -129,6 +132,8 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
         newUser.name = username
         saveContext()
         
+        
+        print("CALL historyStoredTSynchronization")
         
         httpController.historyStoredTSynchronization()
         
@@ -202,8 +207,11 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
                     {
                             UIAlertAction in
                             NSLog("OK Pressed")
+                        if title != "Connection error!" && title != "Sorry!"///be careful with those messages! it have to be same from the the httpcontroller validation
+                        {
                             self.performSegueWithIdentifier("PresentTaskTableViewControllerSegue", sender: self)
-                            
+                        }
+                        
                     }
                     popUpAlertController2.addAction(okAction)
                 

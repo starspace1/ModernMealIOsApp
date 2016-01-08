@@ -1,16 +1,18 @@
 //
-//  Item.swift
+//  ItemOfflineStored.swift
 //  ModernMeal
 //
-//  Created by Pedro Trujillo on 12/14/15.
-//  Copyright © 2015 Pedro Trujillo. All rights reserved.
+//  Created by Pedro Trujillo on 1/7/16.
+//  Copyright © 2016 Pedro Trujillo. All rights reserved.
 //
 
 import Foundation
+import CoreData
 
-class Item
+class ItemOfflineStored: NSManagedObject
 {
-    var dictionary: NSDictionary = NSDictionary()
+
+    var dictionary: NSDictionary!// = NSDictionary()
     
     var id:Int!
     var grocery_list_id:Int!
@@ -23,19 +25,15 @@ class Item
     var created_at:String!
     var updated_at:String!
     
-    var method:String = ""
     
     
+
     
-//    init()
-//    {
-//        dictionary = NSDictionary(dictionary: ["grocery_list_id": 0,  "category": "", "text": "" , "recipe_name": "" , "shopped": false, "item_name": "", "created_at": "", "updated_at": ""])
-        
-//    }
-    
-    init(ItemDict:NSDictionary)
+    func setItemAttributes()//aDictionary:NSDictionary)
     {
-        dictionary = ItemDict.mutableCopy() as! NSDictionary
+        dictionary = api.parseJSONStringToNSDictionary(itemDictionarystring!)
+        
+        let ItemDict:NSDictionary = dictionary.mutableCopy() as! NSDictionary
         
         if let newID:NSNumber = ItemDict["id"] as? NSNumber
         {
@@ -49,12 +47,12 @@ class Item
         
         
         
-//        recipe_id = nil
+        //        recipe_id = nil
         if let newRecipe_id:String = ItemDict["recipe_id"] as? String ?? ""//Int(ItemDict["recipe_id"] as! NSNumber)
         {
-           recipe_id  = newRecipe_id
+            recipe_id  = newRecipe_id
         }
-
+        
         category = ItemDict["category"] as! NSString as String
         text = ItemDict["text"] as! NSString as String
         recipe_name = ItemDict["recipe_name"] as! NSString as String
@@ -63,7 +61,7 @@ class Item
         
         created_at = ItemDict["created_at"] as! NSString as String
         updated_at = ItemDict["updated_at"] as! NSString as String
-
+        
         
     }
     
@@ -83,27 +81,27 @@ class Item
         return Int(Int(recipe_name.characters.count)/30)
     }
     
-    func setAllAttributesInDictionary()
-    {
-//         comment lines is because the app just modify one key
-//        dictionary.setValue(id, forKey: "id")
-//        dictionary.setValue(recipe_id, forKey: "recipe_id")
+//    func setAllAttributesInDictionary()
+//    {
+        //         comment lines is because the app just modify one key
+        //        dictionary.setValue(id, forKey: "id")
+        //        dictionary.setValue(recipe_id, forKey: "recipe_id")
+        
+        //        dictionary.setValue(grocery_list_id as NSNumber, forKey: "grocery_list_id")
+        //        dictionary.setValue(category as NSString, forKey: "category")
+        //        dictionary.setValue(text as NSString, forKey: "text")
+        //        dictionary.setValue(recipe_name as NSString, forKey: "recipe_name")
+//        dictionary.setValue(shopped, forKey: "shopped")
+        //        dictionary.setValue(item_name as NSString, forKey: "item_name")
+        //        dictionary.setValue(updated_at as NSString, forKey: "updated_at")
+        //        dictionary.setValue(created_at as NSString, forKey: "created_at")
+        //
+//    }
+    
+//    func getDictionary() -> NSDictionary
+//    {
+//        setAllAttributesInDictionary()
+//        return dictionary
+//    }
 
-//        dictionary.setValue(grocery_list_id as NSNumber, forKey: "grocery_list_id")
-//        dictionary.setValue(category as NSString, forKey: "category")
-//        dictionary.setValue(text as NSString, forKey: "text")
-//        dictionary.setValue(recipe_name as NSString, forKey: "recipe_name")
-        dictionary.setValue(shopped, forKey: "shopped")
-//        dictionary.setValue(item_name as NSString, forKey: "item_name")
-//        dictionary.setValue(updated_at as NSString, forKey: "updated_at")
-//        dictionary.setValue(created_at as NSString, forKey: "created_at")
-//        
-    }
-    
-    func getDictionary() -> NSDictionary
-    {
-        setAllAttributesInDictionary()
-        return dictionary
-    }
-    
 }

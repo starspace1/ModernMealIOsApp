@@ -17,6 +17,8 @@
 		682B3E7D1C3C3446006DBA27 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 682B3E7C1C3C3446006DBA27 /* OFL.txt */; settings = {ASSET_TAGS = (); }; };
 		682C41BA1C3A1C3B009C50DD /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682C41B81C3A1C3B009C50DD /* User+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
 		682C41BB1C3A1C3B009C50DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682C41B91C3A1C3B009C50DD /* User.swift */; settings = {ASSET_TAGS = (); }; };
+		6834D7181C3EC6890036A0EA /* ItemOfflineStored+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6834D7161C3EC6890036A0EA /* ItemOfflineStored+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		6834D7191C3EC6890036A0EA /* ItemOfflineStored.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6834D7171C3EC6890036A0EA /* ItemOfflineStored.swift */; settings = {ASSET_TAGS = (); }; };
 		68467C921C32EDCD00311025 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68467C911C32EDCD00311025 /* AddItemViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		684855B41C1BCFAB006C1B21 /* HTTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684855B31C1BCFAB006C1B21 /* HTTPController.swift */; settings = {ASSET_TAGS = (); }; };
 		684855B61C1BEC6B006C1B21 /* groceryList.json in Resources */ = {isa = PBXBuildFile; fileRef = 684855B51C1BEC6B006C1B21 /* groceryList.json */; settings = {ASSET_TAGS = (); }; };
@@ -69,6 +71,8 @@
 		682B3E7C1C3C3446006DBA27 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
 		682C41B81C3A1C3B009C50DD /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		682C41B91C3A1C3B009C50DD /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		6834D7161C3EC6890036A0EA /* ItemOfflineStored+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ItemOfflineStored+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6834D7171C3EC6890036A0EA /* ItemOfflineStored.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemOfflineStored.swift; sourceTree = "<group>"; };
 		68467C911C32EDCD00311025 /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		684855B31C1BCFAB006C1B21 /* HTTPController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPController.swift; path = ../HTTPController.swift; sourceTree = "<group>"; };
 		684855B51C1BEC6B006C1B21 /* groceryList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = groceryList.json; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 		685837671C11F4DD006DB8C0 = {
 			isa = PBXGroup;
 			children = (
+				6834D7161C3EC6890036A0EA /* ItemOfflineStored+CoreDataProperties.swift */,
+				6834D7171C3EC6890036A0EA /* ItemOfflineStored.swift */,
 				682C41B81C3A1C3B009C50DD /* User+CoreDataProperties.swift */,
 				682C41B91C3A1C3B009C50DD /* User.swift */,
 				687D46151C1F34AA006DC730 /* GroceryList+CoreDataProperties.swift */,
@@ -356,6 +362,7 @@
 			files = (
 				6858377C1C11F4DE006DB8C0 /* ModernMeal.xcdatamodeld in Sources */,
 				687D46171C1F34AA006DC730 /* GroceryList+CoreDataProperties.swift in Sources */,
+				6834D7181C3EC6890036A0EA /* ItemOfflineStored+CoreDataProperties.swift in Sources */,
 				684855B81C1BF2A0006C1B21 /* GroceryListTableViewController.swift in Sources */,
 				684855B41C1BCFAB006C1B21 /* HTTPController.swift in Sources */,
 				687D462E1C1F62FB006DC730 /* Item.swift in Sources */,
@@ -370,6 +377,7 @@
 				682C41BA1C3A1C3B009C50DD /* User+CoreDataProperties.swift in Sources */,
 				682C41BB1C3A1C3B009C50DD /* User.swift in Sources */,
 				68467C921C32EDCD00311025 /* AddItemViewController.swift in Sources */,
+				6834D7191C3EC6890036A0EA /* ItemOfflineStored.swift in Sources */,
 				684855BA1C1BF891006C1B21 /* CustomerViewController.swift in Sources */,
 				684855BE1C1C0786006C1B21 /* APIController.swift in Sources */,
 			);

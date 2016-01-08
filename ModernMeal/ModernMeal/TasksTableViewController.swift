@@ -436,7 +436,6 @@ class TasksTableViewController: UITableViewController,  ItemsListControllerProto
         }
         
         return false //Is empty Core data
-        
     }
     
     //MARK: Save context

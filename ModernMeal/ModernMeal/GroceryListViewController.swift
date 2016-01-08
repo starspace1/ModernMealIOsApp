@@ -300,6 +300,7 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
                 cell!.backgroundColor = ModernMealSoftGreyColor
                 
                 anItem.shopped = true
+                anItem.setAllAttributesInDictionary()
 //            }
 //            else
 //            {
@@ -446,6 +447,9 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
                 let indexPath:NSIndexPath = undoShoppedHistory.lastObject as! NSIndexPath
                 let anItem:Item = groceryListItemsDictionary[category_order[indexPath.section]]![indexPath.row]
                 anItem.shopped = !anItem.shopped //change the state for the last one
+                
+                anItem.setAllAttributesInDictionary()
+                
                 self.tabBarController?.navigationItem.rightBarButtonItems?.last?.enabled = false
                 httpController.delegator = self
                 

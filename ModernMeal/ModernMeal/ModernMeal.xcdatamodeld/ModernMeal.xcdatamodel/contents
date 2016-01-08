@@ -4,6 +4,10 @@
         <attribute name="groceryListJSON" attributeType="String" syncable="YES"/>
         <attribute name="notesString" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="ItemOfflineStored" representedClassName=".ItemOfflineStored" syncable="YES">
+        <attribute name="itemDictionarystring" attributeType="String" syncable="YES"/>
+        <attribute name="method" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="User" representedClassName=".User" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="token" attributeType="String" syncable="YES"/>
@@ -11,5 +15,6 @@
     <elements>
         <element name="GroceryList" positionX="108" positionY="-3" width="146" height="75"/>
         <element name="User" positionX="-153" positionY="-9" width="117" height="73"/>
+        <element name="ItemOfflineStored" positionX="-9" positionY="9" width="128" height="75"/>
     </elements>
 </model>

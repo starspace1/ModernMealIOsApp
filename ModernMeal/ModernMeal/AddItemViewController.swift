@@ -251,12 +251,11 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
                 {}else{}
 
             }
-        
+  
+//            newItem.setAllAttributesInDictionary()
 
             //delegator.itemWasCreated(newItem,isNew: isNew)
-            
-            
-            
+   
         }
 
     }
