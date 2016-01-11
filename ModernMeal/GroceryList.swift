@@ -17,6 +17,8 @@ class GroceryList: NSManagedObject
     var id:Int!
     var updated_at:NSString!
     var grocery_list_items:Array<NSDictionary>!
+    var shopped:Bool = false
+    
     
     
     
@@ -135,9 +137,9 @@ class GroceryList: NSManagedObject
         
         if let grocery_list:NSDictionary = get_grocery_list()
         {
-            if let shopped:Bool = grocery_list["shopped"] as? Bool
+            if let shoppedValue:Bool = grocery_list["shopped"] as? Bool
             {
-                return shopped
+                return shoppedValue
             }
         }
         
@@ -171,6 +173,7 @@ class GroceryList: NSManagedObject
         updated_at = get_updated_at()
         id = get_id()
         grocery_list_items = get_grocery_list_items()
+        shopped = get_shopped()
         
         
     }
@@ -180,6 +183,14 @@ class GroceryList: NSManagedObject
         if let dictionary:NSDictionary = getGroceryListJSONAsNSDictionary()
         {
             dictionary.setValue(date, forKey: "updated_at")
+            groceryListJSON = api.parseJSONNSDictionaryToString(dictionary) as? String
+        }
+    }
+    func set_shopped(shoppedState:Bool)
+    {
+        if let dictionary:NSDictionary = getGroceryListJSONAsNSDictionary()
+        {
+            dictionary.setValue(shoppedState, forKey: "shopped")
             groceryListJSON = api.parseJSONNSDictionaryToString(dictionary) as? String
         }
     }

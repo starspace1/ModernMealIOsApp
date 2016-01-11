@@ -113,9 +113,11 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
                 self.presentViewController(self.popUpAlertController, animated: true, completion: nil)
         })
         
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        httpController.singIn(usernameTextField.text!, password: passwordTextField.text!)
-        
+        if usernameTextField.text != "" && passwordTextField.text != ""// && textTextField.text != ""
+        {
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+            httpController.singIn(usernameTextField.text!, password: passwordTextField.text!)
+        }
         usernameTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         

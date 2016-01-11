@@ -89,7 +89,16 @@ class APIController:NSURLSessionDataTask, NSURLSessionDelegate, NSURLSessionData
             let url:NSURL = NSURL(string: urlRequest)!
             appendTask(url)
         }
+        
         tasksArray[0].resume()
+
+//        if #available(iOS 9.0, *)
+//        {
+//            tasksArray[0].resume()
+//        } else
+//        {
+//            // Fallback on earlier versions
+//        }
     }
     
     func appendTask(url:NSURL)

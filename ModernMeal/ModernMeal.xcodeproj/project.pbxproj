@@ -80,7 +80,7 @@
 		684855B91C1BF891006C1B21 /* CustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerViewController.swift; sourceTree = "<group>"; };
 		684855BB1C1C00DF006C1B21 /* NotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		684855BD1C1C0786006C1B21 /* APIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
-		685837701C11F4DD006DB8C0 /* ModernMeal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModernMeal.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		685837701C11F4DD006DB8C0 /* Modernmeal.temp_caseinsensitive_rename.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Modernmeal.temp_caseinsensitive_rename.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		685837731C11F4DE006DB8C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		685837751C11F4DE006DB8C0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		685837781C11F4DE006DB8C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,10 +88,10 @@
 		6858377D1C11F4DE006DB8C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		685837801C11F4DE006DB8C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		685837821C11F4DE006DB8C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		685837871C11F4DE006DB8C0 /* ModernMealTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModernMealTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		685837871C11F4DE006DB8C0 /* Modernmeal.temp_caseinsensitive_rename.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Modernmeal.temp_caseinsensitive_rename.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6858378B1C11F4DE006DB8C0 /* ModernMealTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernMealTests.swift; sourceTree = "<group>"; };
 		6858378D1C11F4DE006DB8C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		685837921C11F4DE006DB8C0 /* ModernMealUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModernMealUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		685837921C11F4DE006DB8C0 /* Modernmeal.temp_caseinsensitive_rename.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Modernmeal.temp_caseinsensitive_rename.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		685837961C11F4DE006DB8C0 /* ModernMealUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernMealUITests.swift; sourceTree = "<group>"; };
 		685837981C11F4DE006DB8C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		685837A81C120924006DB8C0 /* TasksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksTableViewController.swift; sourceTree = "<group>"; };
@@ -160,9 +160,9 @@
 		685837711C11F4DD006DB8C0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				685837701C11F4DD006DB8C0 /* ModernMeal.app */,
-				685837871C11F4DE006DB8C0 /* ModernMealTests.xctest */,
-				685837921C11F4DE006DB8C0 /* ModernMealUITests.xctest */,
+				685837701C11F4DD006DB8C0 /* Modernmeal.temp_caseinsensitive_rename.app */,
+				685837871C11F4DE006DB8C0 /* Modernmeal.temp_caseinsensitive_rename.xctest */,
+				685837921C11F4DE006DB8C0 /* Modernmeal.temp_caseinsensitive_rename.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -234,7 +234,7 @@
 			);
 			name = ModernMeal;
 			productName = ModernMeal;
-			productReference = 685837701C11F4DD006DB8C0 /* ModernMeal.app */;
+			productReference = 685837701C11F4DD006DB8C0 /* Modernmeal.temp_caseinsensitive_rename.app */;
 			productType = "com.apple.product-type.application";
 		};
 		685837861C11F4DE006DB8C0 /* ModernMealTests */ = {
@@ -252,7 +252,7 @@
 			);
 			name = ModernMealTests;
 			productName = ModernMealTests;
-			productReference = 685837871C11F4DE006DB8C0 /* ModernMealTests.xctest */;
+			productReference = 685837871C11F4DE006DB8C0 /* Modernmeal.temp_caseinsensitive_rename.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		685837911C11F4DE006DB8C0 /* ModernMealUITests */ = {
@@ -270,7 +270,7 @@
 			);
 			name = ModernMealUITests;
 			productName = ModernMealUITests;
-			productReference = 685837921C11F4DE006DB8C0 /* ModernMealUITests.xctest */;
+			productReference = 685837921C11F4DE006DB8C0 /* Modernmeal.temp_caseinsensitive_rename.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -298,7 +298,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6858376B1C11F4DD006DB8C0 /* Build configuration list for PBXProject "ModernMeal" */;
+			buildConfigurationList = 6858376B1C11F4DD006DB8C0 /* Build configuration list for PBXProject "Modernmeal" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -520,9 +520,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ModernMeal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tiy.ModernMeal;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Modernmeal.temp_caseinsensitive_rename;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -531,9 +533,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ModernMeal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tiy.ModernMeal;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Modernmeal.temp_caseinsensitive_rename;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -544,8 +548,8 @@
 				INFOPLIST_FILE = ModernMealTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tiy.ModernMealTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ModernMeal.app/ModernMeal";
+				PRODUCT_NAME = Modernmeal.temp_caseinsensitive_rename;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Modernmeal.temp_caseinsensitive_rename.app/Modernmeal.temp_caseinsensitive_rename";
 			};
 			name = Debug;
 		};
@@ -556,8 +560,8 @@
 				INFOPLIST_FILE = ModernMealTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tiy.ModernMealTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ModernMeal.app/ModernMeal";
+				PRODUCT_NAME = Modernmeal.temp_caseinsensitive_rename;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Modernmeal.temp_caseinsensitive_rename.app/Modernmeal.temp_caseinsensitive_rename";
 			};
 			name = Release;
 		};
@@ -567,7 +571,7 @@
 				INFOPLIST_FILE = ModernMealUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tiy.ModernMealUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Modernmeal.temp_caseinsensitive_rename;
 				TEST_TARGET_NAME = ModernMeal;
 				USES_XCTRUNNER = YES;
 			};
@@ -579,7 +583,7 @@
 				INFOPLIST_FILE = ModernMealUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tiy.ModernMealUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Modernmeal.temp_caseinsensitive_rename;
 				TEST_TARGET_NAME = ModernMeal;
 				USES_XCTRUNNER = YES;
 			};
@@ -588,7 +592,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6858376B1C11F4DD006DB8C0 /* Build configuration list for PBXProject "ModernMeal" */ = {
+		6858376B1C11F4DD006DB8C0 /* Build configuration list for PBXProject "Modernmeal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				685837991C11F4DE006DB8C0 /* Debug */,

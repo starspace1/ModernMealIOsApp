@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6858376F1C11F4DD006DB8C0"
-               BuildableName = "ModernMeal.app"
+               BuildableName = "Modernmeal.temp_caseinsensitive_rename.app"
                BlueprintName = "ModernMeal"
-               ReferencedContainer = "container:ModernMeal.xcodeproj">
+               ReferencedContainer = "container:Modernmeal.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "685837861C11F4DE006DB8C0"
-               BuildableName = "ModernMealTests.xctest"
+               BuildableName = "Modernmeal.temp_caseinsensitive_rename.xctest"
                BlueprintName = "ModernMealTests"
-               ReferencedContainer = "container:ModernMeal.xcodeproj">
+               ReferencedContainer = "container:Modernmeal.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "685837911C11F4DE006DB8C0"
-               BuildableName = "ModernMealUITests.xctest"
+               BuildableName = "Modernmeal.temp_caseinsensitive_rename.xctest"
                BlueprintName = "ModernMealUITests"
-               ReferencedContainer = "container:ModernMeal.xcodeproj">
+               ReferencedContainer = "container:Modernmeal.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6858376F1C11F4DD006DB8C0"
-            BuildableName = "ModernMeal.app"
+            BuildableName = "Modernmeal.temp_caseinsensitive_rename.app"
             BlueprintName = "ModernMeal"
-            ReferencedContainer = "container:ModernMeal.xcodeproj">
+            ReferencedContainer = "container:Modernmeal.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6858376F1C11F4DD006DB8C0"
-            BuildableName = "ModernMeal.app"
+            BuildableName = "Modernmeal.temp_caseinsensitive_rename.app"
             BlueprintName = "ModernMeal"
-            ReferencedContainer = "container:ModernMeal.xcodeproj">
+            ReferencedContainer = "container:Modernmeal.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6858376F1C11F4DD006DB8C0"
-            BuildableName = "ModernMeal.app"
+            BuildableName = "Modernmeal.temp_caseinsensitive_rename.app"
             BlueprintName = "ModernMeal"
-            ReferencedContainer = "container:ModernMeal.xcodeproj">
+            ReferencedContainer = "container:Modernmeal.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

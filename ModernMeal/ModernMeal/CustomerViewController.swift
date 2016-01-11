@@ -44,6 +44,11 @@ class CustomerViewController: UIViewController
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.tabBarController?.navigationItem.rightBarButtonItems = []//self.editButtonItem()]
         
+        if notesBuffer != ""
+        {
+            notesBuffer = notes
+        }
+        
         
     }
 

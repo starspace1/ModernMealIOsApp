@@ -55,10 +55,10 @@ class HTTPController
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.HTTPMethod = "POST"
-            let requestData = ["email": "leslie.k.brown@gmail.com", "password":"awsedrf"] // here I modify the json dict in whit the new information
+//            let requestData = ["email": "leslie.k.brown@gmail.com", "password":"awsedrf"] // here I modify the json dict in whit the new information
 //            let requestData = ["email": "tazvin2@gmail.com", "password":"password"] // here I modify the json dict in whit the new information
             
-            //let requestData = ["email": email, "password":password] // here I modify the json dict in whit the new information
+            let requestData = ["email": email, "password":password] // here I modify the json dict in whit the new information
             
             do
             {
@@ -199,10 +199,11 @@ class HTTPController
                         if error!.code == -1009
                         {
                             tit = "\(groceryListItem.text!) will be created."
-                            msj = error!.localizedDescription + " So" + tit + " once Internet connection is restored"
+                            msj = error!.localizedDescription + " So " + tit + " once Internet connection is restored"
                             
                             groceryListItem.method = "POST"
                             self.addItemOfflineArray(groceryListItem)
+                            self.delegator.createItem(groceryListItem)
                         }
                         
                     }
@@ -293,7 +294,7 @@ class HTTPController
                         if error!.code == -1009
                         {
                             tit = "\(groceryListItem.text!) will be updated"
-                            msj = error!.localizedDescription + tit + " once Internet connection is restored"
+                            msj = error!.localizedDescription + " So " + tit + " once Internet connection is restored"
                             
                             groceryListItem.method = "PUT"
                             self.addItemOfflineArray(groceryListItem)

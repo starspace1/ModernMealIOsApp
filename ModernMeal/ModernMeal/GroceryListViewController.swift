@@ -147,12 +147,13 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
 //        
 //        
 //                    }
+        var numberShoppedItems:Int = 0
         
         var groceryListItemsByID = [Int: NSDictionary]()
         var new_grocery_list_item_ids: Array<Int> = []
         var new_items: Array<NSDictionary> = []
         
-        
+        //create the array of items by id to send back (no sorted)
         for aCategory in category_order
         {
             if groceryListItemsDictionary[aCategory]?.count > 0
@@ -167,6 +168,13 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
                     else
                     {
                         new_items.append(anItem.getDictionary())
+                    }
+                    
+                    if anItem.shopped
+                    {
+                        numberShoppedItems++
+                        
+                        
                     }
                 }
             }
@@ -190,8 +198,23 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
             grocery_list_items_copy.append(newItem)
         }
 
+        //ask if all items were shopped this time
         
-                    delegator.didChangeItemsList(grocery_list_items_copy)
+        if numberShoppedItems >= grocery_list_items_copy.count
+        {
+            delegator.didChangeAllShoppedItems(true)
+        }
+        else
+        {
+            delegator.didChangeAllShoppedItems(false)
+        }
+        
+        // send back the items at the respective grocery list
+        print("Shopped!! \(numberShoppedItems) all: \(grocery_list_items_copy.count)")
+
+        delegator.didChangeItemsList(grocery_list_items_copy)
+
+        
 //                }
         
     }
@@ -291,40 +314,40 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
     {
         if let anItem:Item = groceryListItemsDictionary[category_order[indexPath.section]]![indexPath.row]
         {
-            
-            let cell = tableView.cellForRowAtIndexPath(indexPath)
-            
-            if !anItem.shopped
+            if let id = anItem.id
             {
-                cell!.accessoryType = .Checkmark
-                cell!.backgroundColor = ModernMealSoftGreyColor
+                let cell = tableView.cellForRowAtIndexPath(indexPath)
                 
-                anItem.shopped = true
-                anItem.setAllAttributesInDictionary()
-//            }
-//            else
-//            {
-//                cell!.accessoryType = .None
-//                cell!.backgroundColor = UIColor.whiteColor()
-//                
-//                anItem.shopped = false
-//            }
-            
-                if !undoShoppedHistory.containsObject(indexPath)
+                if !anItem.shopped
                 {
-                    undoShoppedHistory.addObject(indexPath)
+                    cell!.accessoryType = .Checkmark
+                    cell!.backgroundColor = ModernMealSoftGreyColor
+                    
+                    anItem.shopped = true
+                    anItem.setAllAttributesInDictionary()
+    //            }
+    //            else
+    //            {
+    //                cell!.accessoryType = .None
+    //                cell!.backgroundColor = UIColor.whiteColor()
+    //                
+    //                anItem.shopped = false
+    //            }
+                
+                    if !undoShoppedHistory.containsObject(indexPath)
+                    {
+                        undoShoppedHistory.addObject(indexPath)
+                    }
+                    
+                    httpController.delegator = self
+                    httpController.update(anItem)
+                    
+                    
                 }
-                
-                httpController.delegator = self
-                httpController.update(anItem)
-                
-                
+                //enable item edition mode
+                currentCellIndexPath = indexPath
+                self.tabBarController?.navigationItem.rightBarButtonItems?.last?.enabled = true
             }
-            //enable item edition mode
-            currentCellIndexPath = indexPath
-            self.tabBarController?.navigationItem.rightBarButtonItems?.last?.enabled = true
-
-
             //tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
         
@@ -479,7 +502,10 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
         
         let addItemVC = storyboard?.instantiateViewControllerWithIdentifier("AddItemViewController") as! AddItemViewController
         addItemVC.delegator = self
-        addItemVC.grocery_list_id = groceryList.id
+        if let anID = groceryList.id
+        {
+            addItemVC.grocery_list_id = anID
+        }
         addItemVC.category_order = category_order
         navigationController?.pushViewController(addItemVC, animated: true)
         
@@ -495,14 +521,17 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
     {
         if currentCellIndexPath != nil
         {
-            let addItemVC = storyboard?.instantiateViewControllerWithIdentifier("AddItemViewController") as! AddItemViewController
-            addItemVC.delegator = self
-            //only difference: send the item to modify
-            addItemVC.newItem = groceryListItemsDictionary[category_order[currentCellIndexPath.section]]![currentCellIndexPath.row]
-            addItemVC.grocery_list_id = groceryList.id
-            addItemVC.category_order = category_order
-            navigationController?.pushViewController(addItemVC, animated: true)
-            tableView.deselectRowAtIndexPath(currentCellIndexPath, animated: true)
+            if let anID = groceryList.id
+            {
+                let addItemVC = storyboard?.instantiateViewControllerWithIdentifier("AddItemViewController") as! AddItemViewController
+                addItemVC.delegator = self
+                //only difference: send the item to modify
+                addItemVC.newItem = groceryListItemsDictionary[category_order[currentCellIndexPath.section]]![currentCellIndexPath.row]
+                addItemVC.grocery_list_id = anID
+                addItemVC.category_order = category_order
+                navigationController?.pushViewController(addItemVC, animated: true)
+                tableView.deselectRowAtIndexPath(currentCellIndexPath, animated: true)
+            }
         }
     }
     //===================================================================================================================
@@ -560,12 +589,12 @@ class GroceryListViewController: UIViewController, UITableViewDelegate, UITableV
     
     func updateItem(item:Item)
     {
-        print("ID: \(item.id)")
+//        print("ID: \(item.id)")
     }
     
     func createItem(item:Item)
     {
-        print("ID: \(item.id)")
+//        print("ID: \(item.id)")
     }
     
     func delteItem(item:Item)

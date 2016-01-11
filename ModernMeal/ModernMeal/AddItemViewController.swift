@@ -8,7 +8,7 @@
 
 import UIKit
 
-
+var notesBuffer:String = ""
 
 class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, HTTPControllerProtocol
 {

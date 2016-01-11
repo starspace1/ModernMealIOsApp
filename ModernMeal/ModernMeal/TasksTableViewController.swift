@@ -17,6 +17,7 @@ import CoreData
 protocol ItemsListControllerProtocol
 {
     func didChangeItemsList(results:NSArray)
+    func didChangeAllShoppedItems(AreShoppedAllItems:Bool)
 }
 
 protocol NotesControllerProtocol
@@ -183,13 +184,15 @@ class TasksTableViewController: UITableViewController,  ItemsListControllerProto
 
         cell.textLabel?.text = aGroceryList.get_name()
         
+        print("shopped cellForRowAtIndexPath cell : \(aGroceryList.get_shopped())")
+
         if aGroceryList.get_shopped()
         {
-            cell.detailTextLabel?.text = "The Shopping list is completed :)"
+            cell.detailTextLabel!.text = "The Shopping list is completed :)"
         }
         else
         {
-            cell.detailTextLabel?.text = "Missing ingredients :("
+            cell.detailTextLabel!.text = "Need to buy more ingredients :("
         }
     
 
@@ -360,6 +363,15 @@ class TasksTableViewController: UITableViewController,  ItemsListControllerProto
         
         tableView.reloadData()
         
+    }
+    
+    func didChangeAllShoppedItems(AreShoppedAllItems:Bool)
+    {
+        
+        groceryListsArray[groceryListSelectedIndexPath.row].set_shopped(AreShoppedAllItems)
+        saveContext()
+        groceryListsArray[groceryListSelectedIndexPath.row].setModelAtributes()
+        print("it should \(AreShoppedAllItems) in shopped cell : \(groceryListsArray[groceryListSelectedIndexPath.row].shopped)")
     }
     
     //MARK: for notes
