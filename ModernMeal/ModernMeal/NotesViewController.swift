@@ -14,7 +14,7 @@ class NotesViewController: UIViewController, UITextViewDelegate
     @IBOutlet weak var addNoteTextField: UITextView!
     
     var delegator: NotesControllerProtocol!
-    var notes:String = "Type here your note..."
+    var notes:String = ""//"Type here your note..."
     
     override func viewDidLoad()
     {
@@ -46,13 +46,25 @@ class NotesViewController: UIViewController, UITextViewDelegate
     
     override func viewWillDisappear(animated: Bool)
     {
-        delegator.didChangeNotes(addNoteTextField.text)
+        if addNoteTextField.text != ""
+        {
+            delegator.didChangeNotes(addNoteTextField.text)
+        }
     }
+    
+//    func textViewDidBeginEditing(textView: UITextView)
+//    {
+//        if textView.text == "Type here your note..."
+//        {
+//            
+//        }
+//    }
     
     func textViewDidEndEditing(textView: UITextView)
     {
         delegator.didChangeNotes(textView.text)
         addNoteTextField.resignFirstResponder()
+        NSNotificationCenter.defaultCenter()
     }
     
 

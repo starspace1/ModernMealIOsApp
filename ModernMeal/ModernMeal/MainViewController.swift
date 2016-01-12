@@ -104,9 +104,48 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: - UITextField functions
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool
+    {
+        if textField.text != ""
+        {
+            if usernameTextField.isFirstResponder()
+            {
+                usernameTextField.resignFirstResponder()
+                passwordTextField.becomeFirstResponder()
+                return true
+            }
+            if passwordTextField.isFirstResponder()
+            {
+                passwordTextField.resignFirstResponder()
+
+                authorizationRequest()
+                return true
+            }
+        }
+        return false
+    }
+    //===================================================================================================================
+
+    //MARK: - Action handlers
+    
+    //===================================================================================================================
+
     @IBAction func signInTapped(sender: UIButton)
     {
+        // this is for avoid the nil error 
+        authorizationRequest()
         
+    }
+    //===================================================================================================================
+
+    // MARK - Helper signIn
+    
+    //===================================================================================================================
+
+    func authorizationRequest()
+    {
         dispatch_async(dispatch_get_main_queue(),
             {
                 self.popUpAlertController = UIAlertController(title: "Synchronizing..." , message: "Synchronizing your device information with the Modernmeal service.", preferredStyle: UIAlertControllerStyle.Alert)
@@ -118,13 +157,31 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
             UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             httpController.singIn(usernameTextField.text!, password: passwordTextField.text!)
         }
+        else
+        {
+            dispatch_async(dispatch_get_main_queue(),
+            {
+                self.popUpAlertController.dismissViewControllerAnimated(true, completion:
+                    
+                {
+                        
+                    let popUpAlertController = UIAlertController(title: "Please" , message: "The fields are empty, type the correct username and password.", preferredStyle: UIAlertControllerStyle.Alert)
+                    popUpAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+                    self.presentViewController(popUpAlertController, animated: true, completion: nil)
+                })
+            })
+        }
         usernameTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
-        
     }
     
+    
+    //===================================================================================================================
+
     //MARK: Protocol functions
     
+    //===================================================================================================================
+
     func didReceiveHTTPResults(token:String)
     {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
@@ -203,7 +260,7 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
             self.popUpAlertController.dismissViewControllerAnimated(true, completion:
             
             {
-                    let popUpAlertController2 = UIAlertController(title: title , message: message, preferredStyle: UIAlertControllerStyle.Alert)
+                    self.popUpAlertController = UIAlertController(title: title , message: message, preferredStyle: UIAlertControllerStyle.Alert)
                     
                     let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default)
                     {
@@ -215,9 +272,9 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
                         }
                         
                     }
-                    popUpAlertController2.addAction(okAction)
+                    self.popUpAlertController.addAction(okAction)
                 
-                    self.presentViewController(popUpAlertController2, animated: true, completion: nil)
+                    self.presentViewController(self.popUpAlertController, animated: true, completion: nil)
             })
 
         })
@@ -246,8 +303,12 @@ class MainViewController: UIViewController, UITextFieldDelegate, NSURLSessionDel
     func delteItem(item:Item)
     {
     }
-    
+    //===================================================================================================================
+
     //MARK: - CoreData:
+    
+    //===================================================================================================================
+
     //MARK: Load context
     func loadContext() -> Bool
     {

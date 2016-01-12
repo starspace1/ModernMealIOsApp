@@ -48,16 +48,14 @@ class HTTPController
         if token == nil
         {
             var tit = "Sorry!"///be careful with this message! it have to be same at the main controller view validation
-            var msj = "There is an problem trying to access with \(email) account"
+            var msj = "There is an problem trying to access with \"\(email)\" account"
             
             let fullUrl = "\(baseUrl)/sessions/create.json?"
             let request = NSMutableURLRequest(URL: NSURL(string: fullUrl)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60.0)
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.HTTPMethod = "POST"
-//            let requestData = ["email": "leslie.k.brown@gmail.com", "password":"awsedrf"] // here I modify the json dict in whit the new information
-//            let requestData = ["email": "tazvin2@gmail.com", "password":"password"] // here I modify the json dict in whit the new information
-            
+           
             let requestData = ["email": email, "password":password] // here I modify the json dict in whit the new information
             
             do
@@ -70,6 +68,10 @@ class HTTPController
             catch let error as NSError
             {
                 print("data couldn't be parsed in sign in post data: \(error)")
+                dispatch_async(dispatch_get_main_queue(),
+                    {
+                        self.delegator.msgResponse(tit, message: msj)
+                })
             }
             
             let session = NSURLSession.sharedSession()
@@ -81,21 +83,51 @@ class HTTPController
                         do
                         {
                             let postData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+                            print("--- posData: ")
+                            print(postData)
+                            //{
+                           // message = "Invalid email or password.";
+                        //}
                             if let postDataDict:NSDictionary = (postData as! NSDictionary)
                             {
-                                self.token = postDataDict["token"] as! NSString as String
-                                self.username = postDataDict["username"] as! NSString as String
-                                print("--- token:")
-                                print(self.token)
-                                print("--- posData:")
-                                print(postData)
-                                self.signedIn = true
-                                self.delegator.didReceiveHTTPResults(self.token)
+                                if let newToken:String = postDataDict["token"] as? NSString as? String
+                                {
+                                    self.token = newToken
+                                    self.username = postDataDict["username"] as! NSString as String
+                                    print("--- token:")
+                                    print(self.token)
+                                    self.signedIn = true
+                                    self.delegator.didReceiveHTTPResults(self.token)
+                                }
+                                else
+                                {
+                                    // if is not correct username or psw  
+                                    if let message:String = postDataDict["message"] as? NSString as? String
+                                    {
+                                        dispatch_async(dispatch_get_main_queue(),
+                                            {
+                                                self.delegator.msgResponse(tit, message: message)
+                                        })
+                                    }
+                                    else
+                                    {
+                                        dispatch_async(dispatch_get_main_queue(),
+                                            {
+                                                self.delegator.msgResponse(tit, message: msj)
+                                        })
+                                    }
+                                    
+                                }
                             }
+                            
                         }
                         catch let error as NSError
                         {
                             print("data couln't be parsed in sign in authentication task: \(error)")
+                            dispatch_async(dispatch_get_main_queue(),
+                                {
+                                    self.delegator.msgResponse(tit, message: msj)
+                            })
                         }
                         
                     }
@@ -104,9 +136,10 @@ class HTTPController
                         if error!.code == -1009
                         {
                             tit = "Connection error!"///be careful with this message! it have to be same at the main controller view validation
-                            msj = error!.localizedDescription + " Try again once Internet connection is restored"
+                            msj = error!.localizedDescription + " Try again once Internet connection is restored."
                             
                         }
+                        //error 3840
                         
                         dispatch_async(dispatch_get_main_queue(),
                             {
@@ -114,6 +147,7 @@ class HTTPController
                         })
                         
                     }
+                    
                     
 
             }

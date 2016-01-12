@@ -33,7 +33,7 @@
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="ModernMeal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Modernmeal_temp_caseinsensitive_rename" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -106,13 +106,13 @@
         <!--Tasks Table View Controller-->
         <scene sceneID="GxV-eG-I4g">
             <objects>
-                <tableViewController id="FEI-r0-Yt5" customClass="TasksTableViewController" customModule="ModernMeal" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="FEI-r0-Yt5" customClass="TasksTableViewController" customModule="Modernmeal_temp_caseinsensitive_rename" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="m4U-vc-naP">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TaskTableViewCell" textLabel="k1I-Ax-yFa" detailTextLabel="KAX-SR-yW0" style="IBUITableViewCellStyleSubtitle" id="EPg-UQ-IhE" customClass="TaskTableViewCell" customModule="ModernMeal" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TaskTableViewCell" textLabel="k1I-Ax-yFa" detailTextLabel="KAX-SR-yW0" style="IBUITableViewCellStyleSubtitle" id="EPg-UQ-IhE" customClass="TaskTableViewCell" customModule="Modernmeal_temp_caseinsensitive_rename" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EPg-UQ-IhE" id="Sxu-YN-TbT">
@@ -154,7 +154,7 @@
         <!--Customer-->
         <scene sceneID="FoT-x3-Fym">
             <objects>
-                <viewController id="qx2-NC-57K" customClass="CustomerViewController" customModule="ModernMeal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="qx2-NC-57K" customClass="CustomerViewController" customModule="Modernmeal_temp_caseinsensitive_rename" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5Wc-cj-vw4"/>
                         <viewControllerLayoutGuide type="bottom" id="dZz-ed-yxd"/>
@@ -247,7 +247,7 @@
         <!--Notes-->
         <scene sceneID="HB9-Xc-WGb">
             <objects>
-                <viewController id="QRk-xd-yTP" customClass="NotesViewController" customModule="ModernMeal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="QRk-xd-yTP" customClass="NotesViewController" customModule="Modernmeal_temp_caseinsensitive_rename" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sQm-vc-vR0"/>
                         <viewControllerLayoutGuide type="bottom" id="oc1-Y1-7kf"/>
@@ -262,12 +262,12 @@
                                 <color key="textColor" red="0.3313965062" green="0.46688437690000001" blue="0.143904326" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="06U-Ep-c2D">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Type notes here.." textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="06U-Ep-c2D">
                                 <rect key="frame" x="25" y="109" width="555" height="442"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" address="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="QRk-xd-yTP" id="szT-27-su0"/>
                                 </connections>
@@ -303,7 +303,7 @@
         <!--List-->
         <scene sceneID="OW1-p9-Ns6">
             <objects>
-                <viewController id="0pM-nL-MM4" customClass="GroceryListViewController" customModule="ModernMeal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0pM-nL-MM4" customClass="GroceryListViewController" customModule="Modernmeal_temp_caseinsensitive_rename" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bHy-0b-L3m"/>
                         <viewControllerLayoutGuide type="bottom" id="xrp-rd-0Ym"/>
@@ -319,7 +319,7 @@
                                     <constraint firstAttribute="height" constant="547" id="4b1-O2-U45"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ItemTableViewCell" textLabel="YlV-0Y-otW" detailTextLabel="VxR-5j-pL0" style="IBUITableViewCellStyleSubtitle" id="pYD-mh-nlI" customClass="ItemTableViewCell" customModule="ModernMeal" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ItemTableViewCell" textLabel="YlV-0Y-otW" detailTextLabel="VxR-5j-pL0" style="IBUITableViewCellStyleSubtitle" id="pYD-mh-nlI" customClass="ItemTableViewCell" customModule="Modernmeal_temp_caseinsensitive_rename" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pYD-mh-nlI" id="wGw-vE-You">
@@ -392,7 +392,7 @@
         <!--Add Item View Controller-->
         <scene sceneID="jKZ-aB-gKh">
             <objects>
-                <viewController storyboardIdentifier="AddItemViewController" id="gcc-tM-Dgv" customClass="AddItemViewController" customModule="ModernMeal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddItemViewController" id="gcc-tM-Dgv" customClass="AddItemViewController" customModule="Modernmeal_temp_caseinsensitive_rename" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fZo-YK-XD2"/>
                         <viewControllerLayoutGuide type="bottom" id="13L-CN-rjf"/>
