@@ -90,7 +90,10 @@ class APIController:NSURLSessionDataTask, NSURLSessionDelegate, NSURLSessionData
             appendTask(url)
         }
         
-        tasksArray[0].resume()
+        //necessary to cast this value to avoid problem with previous versions of iOS 9.0
+        let aTask:NSURLSessionDataTask = tasksArray[0] as! NSURLSessionDataTask
+        aTask.resume()
+//        tasksArray[0].resume()
 
 //        if #available(iOS 9.0, *)
 //        {
@@ -162,7 +165,10 @@ class APIController:NSURLSessionDataTask, NSURLSessionDelegate, NSURLSessionData
         
         if tasksArray.count != 0
         {
-            tasksArray[0].resume()
+//            tasksArray[0].resume()
+            //necessary to cast this value to avoid problem with previous versions of iOS 9.0
+            let aTask:NSURLSessionDataTask = tasksArray[0] as! NSURLSessionDataTask
+            aTask.resume()
         }
         else
         {
